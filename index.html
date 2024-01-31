@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="./src/style.css">
+</head>
+
+<body>
+    <nav class="h-12 flex justify-between items-center sticky top-0 bg-[#F1F4F5] shadow-lg">
+        <div class="flex items-center ml-2">
+            <img class="h-12" src="assts/app logo.png" alt="">
+            <h1 class="hidden font-bold md:block">Expense Management System</h1>
+        </div>
+        <div class="mr-8 font-bold text-lg shadow-lg bg-[#0A6CFF] p-1 rounded text-white">
+            <a href="src/signin.html" class="">SignIn</a>
+        </div>
+    </nav>
+    <main class=" flex justify-center items-center w-full lg:h-[80vh] md:w-auto ">
+        <div class="m-4 w-full  lg:w-[40vw] md:h-auto rounded-3xl shadow-2xl  border-2  ">
+            <div class="m-4 flex flex-col">
+                <h1 class="lg:text-lg font-bold">Full name</h1>
+                <input class="lg:text-lg outline-none w-full border-2 shadow-xl rounded mb-2" type="text" name="name" id="signup_fullname">
+                <h1 class="lg:text-lg font-bold">Email</h1>
+                <input class="lg:text-lg outline-none w-full border-2 shadow-xl rounded  mb-2" type="email" name="email" id="signup_email">
+                <h1 class="lg:text-lg font-bold">Password</h1>
+                <input class="lg:text-lg outline-none w-full border-2 shadow-xl rounded  mb-2" type="password" id="signup_password">
+                <h1 class="lg:text-lg font-bold">Confirm Password</h1>
+                <input class="lg:text-lg outline-none w-full border-2 shadow-xl rounded  mb-2" type="password" id="signup_confirmpassword" >
+
+                <div class="flex justify-center">
+                    <input type="submit" value="Register" class="cursor-pointer border-2 shadow-xl rounded-lg p-2 justify-center bg-[#0A6CFF] font-bold text-white" id="signup_btn">
+                </div>
+            </div>
+        </div>
+    </main>
+
+<script>
+let signup_fullname = document.getElementById("signup_fullname")
+let signup_email = document.getElementById("signup_email")
+let signup_password = document.getElementById("signup_password")
+let signup_confirmpassword = document.getElementById("signup_confirmpassword")
+let register_btn = document.getElementById("signup_btn")
+let users = []
+
+let localstorage = localStorage.getItem('users')
+
+if (localstorage) {
+    users  = JSON.parse(localstorage)
+}
+
+function useremail(email) {
+    return users.some(user => user.email === email);
+}
+
+function submituser(){
+    const fullname = signup_fullname.value;
+    const email = signup_email.value;
+    const password = signup_password.value;
+    const confirmpassword = signup_confirmpassword.value;
+
+    if (fullname === "" || email === "" || password === "" || confirmpassword === "") {
+        alert("Please fill all fields");
+    } else if (password !== confirmpassword) {
+        alert('Password does not match');
+    } else if (useremail(email)) {
+        alert("Email already exists");
+    } else {
+        const newuser = {
+            fullname,
+            email,
+            password,
+            confirmpassword
+        }
+        users.push(newuser);
+        localStorage.setItem('users', JSON.stringify(users))
+        location.replace('./src/signin.html')
+    }
+}
+
+register_btn.addEventListener('click', submituser)
+</script>
+
+</body>
+
+</html>

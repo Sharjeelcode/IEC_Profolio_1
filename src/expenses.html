@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expenses</title>
+    <link rel="stylesheet" href="./src/style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="h-12 w-full flex justify-between z-50 items-center sticky top-0 bg-[#F1F4F5] shadow-lg">
+        <div class="flex items-center ml-2">
+            <img class="h-12" src="../assts/app logo.png" alt="">
+            <h1 class="text-sm md:text-lg font-bold md:block">Expense Management System</h1>
+        </div>
+        <div class="mr-8 font-bold shadow-lg bg-[#0A6CFF] p-1 rounded text-white">
+            <a href="signin.html" class="">Logout</a>
+        </div>
+    </nav>
+    <div class=" lg:flex">
+        <aside
+            class="hidden w-full h-auto  lg:w-[15%]   bg-[#F1F4F5] shadow-lg shadow-black ow-black lg:h-[92vh] sticky top-12  lg:flex lg:flex-col">
+            <a href="dashboard.html" class="mt-4 lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg  
+                  ">Dashboard<a>
+                    <a href="income.html" class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Income</a>
+                    <a href="expenses.html" class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg shadow-xl lg:border-r-4 border-[#0A6CFF]">Expense</a>
+                    <a href="catagory.html" class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Categories</a>
+                    <a href="settings.html" class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Settings</a>
+                    <a href="profile.html" class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Profile</a>
+        </aside>
+        <main class="w-[50%]  lg:w-[85%] ml-2">
+            <form action="" class="m-4 p-4 w-auto h-auto shadow-xl border-2 rounded-full ">  
+                <div class=" flex items-center justify-around mb-4">
+                    <div>
+                        <label for="SelectDate" class="text-lg font-bold ">Select Date:</label>
+                        <input type="date" id="SelectDate" class="rounded-2xl px-4 shadow-lg border-2">
+                    </div>
+                    <div>
+                        <label for="transactiontype" class="text-lg font-bold">Transaction type</label>
+                        <select name="transactiontype" id="transactiontype" class="rounded-2xl px-4 shadow-lg border-2 ">
+                            <option value="Expense">Expense</option>
+                            <option value="Income">Income</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="category" class="text-lg font-bold">Category :</label>
+                        <select name="category" id="category" class="rounded-2xl px-4 shadow-lg border-2">
+                            <option value="fuel">Utilities</option>
+                            <option value="food">Grocery</option>
+                            <option value="grocery">Rent</option>
+                            <option value="medicine">Health</option>
+                            <option value="shopping">Education</option>
+                            <option value="travling">Salary</option>
+                            <option value="salery">Commission</option>
+                            <option value="bussines">Bonus</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="flex items-center justify-around mb-4">
+                    <div >
+                        <label for="number" class="lg:text-lg font-bold">Amount:</label>
+                        <input class="lg:text-lg outline-none  border-2 shadow-xl rounded  mb-2" type="number" name="Amount" id="Amount">
+                    </div>
+                    <div class="flex items-center">
+                        <label for="note" class="lg:text-lg font-bold">Note:</label>
+                        <textarea name="note" id="note" cols="50" rows="2" class="rounded shadow-lg border-2"></textarea>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <input type="submit" value="Save"
+                        class="cursor-pointer px-4 shadow-xl rounded-lg p-2 justify-center bg-[#0A6CFF] font-bold text-white">
+                </div>
+
+
+            </form>
+
+        </main>
+
+
+    </div>
+
+
+</body>
+
+</html>

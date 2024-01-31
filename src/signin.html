@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="h-12 flex justify-between items-center sticky top-0 bg-[#F1F4F5] shadow-lg">
+        <div class="flex items-center ml-2">
+            <img class="h-12" src="../assts/app logo.png" alt="">
+            <h1 class="hidden font-bold md:block">Expense Management System</h1>
+        </div>
+        <div class="mr-8 font-bold text-lg shadow-lg bg-[#0A6CFF] p-1 rounded text-white">
+            <a href="../index.html" class="">Register</a>
+        </div>
+    </nav>
+    <main class=" flex justify-center items-center w-full lg:h-[80vh] md:w-auto ">
+        <div class="m-4 w-full  lg:w-[40vw] md:h-auto rounded-3xl shadow-2xl  border-2  ">
+            <div class="m-4 flex flex-col">
+                <h1 class="lg:text-lg font-bold">Email</h1>
+                <input class="lg:text-lg outline-none w-full border-2 shadow-xl rounded  mb-2" type="email" name="email"
+                    id="sign_email">
+                <h1 class="lg:text-lg font-bold">Password</h1>
+                <input class="lg:text-lg outline-none w-full border-2 shadow-xl rounded  mb-2" type="password"
+                    id="signin_password">
+                <div class="flex justify-center">
+                    <input type="submit" value="SignIn"
+                        class="cursor-pointer border-2 shadow-xl rounded-lg p-2 justify-center bg-[#0A6CFF] font-bold text-white"
+                        id="signin_btn">
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+<script>
+    
+let sign_email = document.getElementById("sign_email")
+let signin_password = document.getElementById("signin_password")
+let signin_btn = document.getElementById("signin_btn");
+let users = []
+
+let localstorage = localStorage.getItem('users')
+
+if (localstorage) {
+    users  = JSON.parse(localstorage)
+}
+
+function useremail(email) {
+    return users.some(user => user.email === email);
+}
+function userpassword(email, password) {
+    return users.some(user => user.email === email && user.password === password);
+}
+function login() {
+    let email = sign_email.value
+    let password = signin_password.value
+
+    if (useremail(email)) {
+        if (userpassword(email, password)) {
+            location.replace('./dashboard.html');
+        } else {
+            alert("Invalid password");
+        }
+    } else {
+        alert("Invalid email");
+    }
+}
+
+signin_btn.addEventListener('click',login)
+</script>
+
+</body>
+
+</html>
