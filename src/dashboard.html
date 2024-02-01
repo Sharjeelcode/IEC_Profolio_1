@@ -7,7 +7,19 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
+<style>
+    #t_body tr td{
+        white-space: nowrap ;
+        border: 2px solid;
+        padding: 10px;
+        text-align: center;
+    }
+    .t_head th{
+        white-space: nowrap ;
+        border: 2px solid;
+        padding: 10px;
+    }
+</style>
 <body>
     <nav class="h-12 w-full flex justify-between z-50 items-center sticky top-0 bg-[#F1F4F5] shadow-lg">
         <div class="flex items-center ml-2">
@@ -25,20 +37,22 @@
                  shadow-xl lg:border-r-4 border-[#0A6CFF]">Dashboard<a>
                     <a href="income.html" class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Income</a>
                     <a href="expenses.html" class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Expense</a>
-                    <a href="catagory.html" class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Categories</a>
+                    <a href="catagory.html"
+                        class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Categories</a>
                     <a href="settings.html" class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Settings</a>
                     <a href="profile.html" class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Profile</a>
         </aside>
         <main class="w-full   lg:w-[85%] ml-2">
-            <form action="" class="m-4 p-4 w-auto h-auto shadow-xl border-2 rounded-2xl ">  
+            <div class="m-4 p-4 w-auto h-auto shadow-xl border-2 rounded-2xl ">
                 <div class="flex-col  lg:flex-row  flex items-center justify-around mb-4">
                     <div>
                         <label for="SelectDate" class="text-lg font-bold ">Select Date:</label>
-                        <input type="date" id="SelectDate"  class="rounded-2xl px-4 shadow-lg border-2">
+                        <input type="date" id="SelectDate" class="rounded-2xl px-4 shadow-lg border-2">
                     </div>
                     <div>
-                        <label for="transactiontype" class="text-lg font-bold">Transaction type</label>
-                        <select name="transactiontype" id="transactiontype" class="rounded-2xl px-4 shadow-lg border-2 ">
+                        <label for="transactiontype" class="text-lg font-bold">Transaction type:</label>
+                        <select name="transactiontype" id="transactiontype"
+                            class="rounded-2xl px-4 shadow-lg border-2 ">
                             <option value="Expense">Expense</option>
                             <option value="Income">Income</option>
                         </select>
@@ -46,63 +60,121 @@
                     <div>
                         <label for="category" class="text-lg font-bold">Category :</label>
                         <select name="category" id="category" class="rounded-2xl px-4 shadow-lg border-2">
-                            <option value="fuel">Utilities</option>
-                            <option value="food">Grocery</option>
+                            <!-- <option value="Utilities">Utilities</option>
+                            <option value="Grocery">Grocery</option>
                             <option value="grocery">Rent</option>
-                            <option value="medicine">Health</option>
-                            <option value="shopping">Education</option>
-                            <option value="travling">Salary</option>
-                            <option value="salery">Commission</option>
-                            <option value="bussines">Bonus</option>
+                            <option value="Rent">Health</option>
+                            <option value="Education">Education</option>
+                            <option value="Salary">Salary</option>
+                            <option value="Commission">Commission</option>
+                            <option value="Bonus">Bonus</option> -->
                         </select>
                     </div>
                 </div>
                 <div class="flex-col lg:flex-row flex items-center justify-center mb-4">
-                    <div >
-                        <label for="number" class="lg:text-lg font-bold">Amount:</label>
-                        <input class="lg:text-lg outline-none  border-2 shadow-xl rounded  mb-2" type="number" name="Amount" id="Amount">
-                    </div>
                     <div class="flex items-center">
                         <label for="note" class="lg:text-lg font-bold">Note:</label>
-                        <textarea name="note" id="note" cols="auto" rows="auto" class="rounded shadow-lg border-2"></textarea>
+                        <textarea name="note" id="note" class="rounded shadow-lg border-2 h-auto w-96"></textarea>
+                    </div>
+                    <div>
+                        <label for="number" class="lg:text-lg font-bold">Amount:</label>
+                        <input class="lg:text-lg outline-none  border-2 shadow-xl rounded  mb-2" type="number"
+                            name="Amount" id="amount">
                     </div>
                 </div>
                 <div class="flex justify-center">
                     <input type="submit" value="Save"
-                        class="cursor-pointer px-4 shadow-xl rounded-lg p-2 justify-center bg-[#0A6CFF] font-bold text-white">
+                        class="cursor-pointer px-4 shadow-xl rounded-lg p-2 justify-center bg-[#0A6CFF] font-bold text-white" id="save_records">
                 </div>
-               
+            </div>
+            <div class="overflow-x-auto mr-2  w-full overflow-y-auto ">
 
-            </form>
+                <table class="w-full border-2 ">
+                    <tr class="t_head">
+                        <th>Date</th>
+                        <th>Transaction type</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Note</th>
+                    </tr>
+                    <tbody id="t_body">
+                       
+                    </tbody>
+                </table>
 
-            <table class="border-2 m-4 w-auto ">
-                <tr class="border-2">
-                    <th class="border-2 px-1">Date</th>
-                    <th class="border-2 px-1">Transection type</th>
-                    <th class="border-2 px-1">Category</th>
-                    <th class="border-2 px-1">Amount</th>
-                    <th class="border-2 px-1">Note</th>
-                </tr>
-                <tr>
-                    <td class="text-center px-1 border-2">123ddddd</td>
-                    <td class="text-center px-1 border-2">1234</td>
-                    <td class="text-center px-1 border-2">Commission</td>
-                    <td class="text-center px-1 border-2">1234</td>
-                    <td class="text-center px-1  border-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit, fuga. lorem20 34</td>
-                </tr>
-            </table>
-
-
-
-
+            </div>
 
 
         </main>
-
-
     </div>
+    <!-- <script>
+        // checking activeuser starts
+        let users = []
+        let userdata = localStorage.getItem('users')
+        if (userdata) {
+            users = JSON.parse(userdata)
+        }
+        let activeuser = localStorage.getItem('activeUser')
+        let active;
+        users.forEach(element => {
+            if (element.email === activeuser) {
+                active = true
+            }
+        });
+        if (!active) {
+            location.replace('./signin.html')
+        }
+        // checking activeuser ends
+
+        // Get today's date in the format "YYYY-MM-DD"
+        const today = new Date().toISOString().split('T')[0];
+
+        let $date = document.getElementById('SelectDate').value = today
+        let $transactiontype = document.getElementById("transactiontype")
+        let $category = document.getElementById("category")
+        let $amount = document.getElementById("amount")
+        let $note = document.getElementById("note")
+        let $t_body = document.getElementById("t_body")
+        let $save_records = document.getElementById("save_records")
+        console.log($category.value);
+        function savedata() {
+            let t_row = document.createElement('tr')
+
+            let date = document.createElement('td')
+            date.innerHTML = $date
+            t_row.appendChild(date)
+            let transactiontype = document.createElement('td')
+            transactiontype.innerHTML = $transactiontype.value
+            t_row.appendChild(transactiontype)
+            let category = document.createElement('td')
+            category.innerHTML = $category.value
+            t_row.appendChild(category)
+            let amount = document.createElement('td')
+            amount.innerHTML = $amount.value
+            t_row.appendChild(amount)
+            let note = document.createElement('td')
+            note.innerHTML = $note.value
+            t_row.appendChild(note)
+
+            $t_body.appendChild(t_row)
 
 
+        }
+
+
+
+
+        $save_records.addEventListener('click',savedata)
+
+
+
+
+
+
+
+    </script> -->
+
+    <script src="../script.js"></script>
 </body>
 
 </html>

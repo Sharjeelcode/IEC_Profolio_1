@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings</title>
-    <link rel="stylesheet" href="./src/style.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -26,53 +25,47 @@
                   ">Dashboard<a>
                     <a href="income.html" class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Income</a>
                     <a href="expenses.html" class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Expense</a>
-                    <a href="catagory.html" class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Categories</a>
-                    <a href="settings.html" class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg  shadow-xl lg:border-r-4 border-[#0A6CFF]">Settings</a>
+                    <a href="catagory.html"
+                        class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Categories</a>
+                    <a href="settings.html"
+                        class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg  shadow-xl lg:border-r-4 border-[#0A6CFF]">Settings</a>
                     <a href="profile.html" class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Profile</a>
         </aside>
         <main class="w-[50%]  lg:w-[85%] ml-2">
-            <form action="" class="m-4 p-4 w-auto h-auto shadow-xl border-2 rounded-full ">  
+            <div class="m-4 p-4 w-auto h-auto shadow-xl border-2 rounded-full ">
                 <div class=" flex items-center justify-around mb-4">
-                    <div>
+                    <div class="hidden">
                         <label for="SelectDate" class="text-lg font-bold ">Select Date:</label>
                         <input type="date" id="SelectDate" class="rounded-2xl px-4 shadow-lg border-2">
                     </div>
                     <div>
                         <label for="transactiontype" class="text-lg font-bold">Transaction type</label>
-                        <select name="transactiontype" id="transactiontype" class="rounded-2xl px-4 shadow-lg border-2 ">
+                        <select name="transactiontype" id="transactiontype"
+                            class="rounded-2xl px-4 shadow-lg border-2 ">
                             <option value="Expense">Expense</option>
                             <option value="Income">Income</option>
                         </select>
                     </div>
                     <div>
                         <label for="category" class="text-lg font-bold">Category :</label>
-                        <select name="category" id="category" class="rounded-2xl px-4 shadow-lg border-2">
-                            <option value="fuel">Utilities</option>
-                            <option value="food">Grocery</option>
-                            <option value="grocery">Rent</option>
-                            <option value="medicine">Health</option>
-                            <option value="shopping">Education</option>
-                            <option value="travling">Salary</option>
-                            <option value="salery">Commission</option>
-                            <option value="bussines">Bonus</option>
-                        </select>
+                        <select name="category" id="category" class="rounded-2xl px-4 shadow-lg border-2"></select>
                     </div>
                 </div>
-               
+
                 <div class="flex justify-center">
-                    <input type="submit" value="Save"
+                    <input type="submit" value="Add Catagory"
                         class="cursor-pointer px-4 shadow-xl rounded-lg p-2 justify-center bg-[#0A6CFF] font-bold text-white">
                 </div>
 
 
-            </form>
+            </div>
 
         </main>
 
 
     </div>
 
-
+    <script src="../script.js"></script>
 </body>
 
 </html>

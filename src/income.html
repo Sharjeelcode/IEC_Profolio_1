@@ -5,10 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Income</title>
-    <link rel="stylesheet" href="./src/style.css">
     <link rel="stylesheet" href="style.css">
 </head>
-
+<style>
+    #t_body tr td{
+        white-space: nowrap ;
+        border: 2px solid;
+        padding: 10px;
+        text-align: center;
+    }
+    .t_head th{
+        white-space: nowrap ;
+        border: 2px solid;
+        padding: 10px;
+    }
+</style>
 <body>
     <nav class="h-12 w-full flex justify-between z-50 items-center sticky top-0 bg-[#F1F4F5] shadow-lg">
         <div class="flex items-center ml-2">
@@ -30,16 +41,17 @@
                     <a href="settings.html" class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Settings</a>
                     <a href="profile.html" class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Profile</a>
         </aside>
-        <main class="w-[50%]  lg:w-[85%] ml-2">
-            <form action="" class="m-4 p-4 w-auto h-auto shadow-xl border-2 rounded-full ">  
-                <div class=" flex items-center justify-around mb-4">
+        <main class="w-full   lg:w-[85%] ml-2">
+            <div class="m-4 p-4 w-auto h-auto shadow-xl border-2 rounded-2xl ">
+                <div class="flex-col  lg:flex-row  flex items-center justify-around mb-4">
                     <div>
                         <label for="SelectDate" class="text-lg font-bold ">Select Date:</label>
                         <input type="date" id="SelectDate" class="rounded-2xl px-4 shadow-lg border-2">
                     </div>
                     <div>
-                        <label for="transactiontype" class="text-lg font-bold">Transaction type</label>
-                        <select name="transactiontype" id="transactiontype" class="rounded-2xl px-4 shadow-lg border-2 ">
+                        <label for="transactiontype" class="text-lg font-bold">Transaction type:</label>
+                        <select name="transactiontype" id="transactiontype"
+                            class="rounded-2xl px-4 shadow-lg border-2 ">
                             <option value="Expense">Expense</option>
                             <option value="Income">Income</option>
                         </select>
@@ -47,40 +59,56 @@
                     <div>
                         <label for="category" class="text-lg font-bold">Category :</label>
                         <select name="category" id="category" class="rounded-2xl px-4 shadow-lg border-2">
-                            <option value="fuel">Utilities</option>
-                            <option value="food">Grocery</option>
+                            <!-- <option value="Utilities">Utilities</option>
+                            <option value="Grocery">Grocery</option>
                             <option value="grocery">Rent</option>
-                            <option value="medicine">Health</option>
-                            <option value="shopping">Education</option>
-                            <option value="travling">Salary</option>
-                            <option value="salery">Commission</option>
-                            <option value="bussines">Bonus</option>
+                            <option value="Rent">Health</option>
+                            <option value="Education">Education</option>
+                            <option value="Salary">Salary</option>
+                            <option value="Commission">Commission</option>
+                            <option value="Bonus">Bonus</option> -->
                         </select>
                     </div>
                 </div>
-                <div class="flex items-center justify-around mb-4">
-                    <div >
-                        <label for="number" class="lg:text-lg font-bold">Amount:</label>
-                        <input class="lg:text-lg outline-none  border-2 shadow-xl rounded  mb-2" type="number" name="Amount" id="Amount">
-                    </div>
+                <div class="flex-col lg:flex-row flex items-center justify-center mb-4">
                     <div class="flex items-center">
                         <label for="note" class="lg:text-lg font-bold">Note:</label>
-                        <textarea name="note" id="note" cols="50" rows="2" class="rounded shadow-lg border-2"></textarea>
+                        <textarea name="note" id="note" class="rounded shadow-lg border-2 h-auto w-96"></textarea>
+                    </div>
+                    <div>
+                        <label for="number" class="lg:text-lg font-bold">Amount:</label>
+                        <input class="lg:text-lg outline-none  border-2 shadow-xl rounded  mb-2" type="number"
+                            name="Amount" id="amount">
                     </div>
                 </div>
                 <div class="flex justify-center">
                     <input type="submit" value="Save"
-                        class="cursor-pointer px-4 shadow-xl rounded-lg p-2 justify-center bg-[#0A6CFF] font-bold text-white">
+                        class="cursor-pointer px-4 shadow-xl rounded-lg p-2 justify-center bg-[#0A6CFF] font-bold text-white" id="save_records">
                 </div>
+            </div>
+            <div class="overflow-x-auto mr-2  w-full overflow-y-auto ">
 
+                <table class="w-full border-2 ">
+                    <tr class="t_head">
+                        <th>Date</th>
+                        <th>Transaction type</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Note</th>
+                    </tr>
+                    <tbody id="t_body">
+                       
+                    </tbody>
+                </table>
 
-            </form>
+            </div>
+
 
         </main>
 
 
     </div>
-
+<script src="../script.js"></script>
 
 </body>
 

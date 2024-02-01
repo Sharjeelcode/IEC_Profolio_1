@@ -61,8 +61,11 @@ function login() {
     let email = sign_email.value
     let password = signin_password.value
 
-    if (useremail(email)) {
+    if (email === "" || password === "") {
+        alert("“Fields are required!")
+    }else if (useremail(email)) {
         if (userpassword(email, password)) {
+            localStorage.setItem('activeUser',email)
             location.replace('./dashboard.html');
         } else {
             alert("Invalid password");
