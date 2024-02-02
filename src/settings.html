@@ -33,39 +33,93 @@
         </aside>
         <main class="w-[50%]  lg:w-[85%] ml-2">
             <div class="m-4 p-4 w-auto h-auto shadow-xl border-2 rounded-full ">
-                <div class=" flex items-center justify-around mb-4">
-                    <div class="hidden">
-                        <label for="SelectDate" class="text-lg font-bold ">Select Date:</label>
-                        <input type="date" id="SelectDate" class="rounded-2xl px-4 shadow-lg border-2">
-                    </div>
-                    <div>
-                        <label for="transactiontype" class="text-lg font-bold">Transaction type</label>
-                        <select name="transactiontype" id="transactiontype"
-                            class="rounded-2xl px-4 shadow-lg border-2 ">
-                            <option value="Expense">Expense</option>
-                            <option value="Income">Income</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="category" class="text-lg font-bold">Category :</label>
-                        <select name="category" id="category" class="rounded-2xl px-4 shadow-lg border-2"></select>
-                    </div>
+                <h1 class="text-center text-lg font-bold">Add Expense categories</h1>
+                <div class=" flex items-center mb-4">
+                    <h1 class="text-lg mr-2">Enter catagory name : </h1>
+                    <input type="text" class="border-2 outline-none" id="new_expense_catagory">
+
                 </div>
 
                 <div class="flex justify-center">
-                    <input type="submit" value="Add Catagory"
-                        class="cursor-pointer px-4 shadow-xl rounded-lg p-2 justify-center bg-[#0A6CFF] font-bold text-white">
+                    <input type="submit" value="Save"
+                        class="cursor-pointer px-4 shadow-xl rounded-lg p-2 justify-center bg-[#0A6CFF] font-bold text-white"
+                        id="add_expense_btn">
                 </div>
 
 
             </div>
+           
+            <div class="m-4 p-4 w-auto h-auto shadow-xl border-2 rounded-full ">
+                <h1 class="text-center text-lg font-bold">Add Income categories</h1>
+                <div class=" flex items-center mb-4">
+                    <h1 class="text-lg mr-2">Enter catagory name : </h1>
+                    <input type="text" class="border-2 outline-none" id="new_income_catagory">
+
+                </div>
+
+                <div class="flex justify-center">
+                    <input type="submit" value="Save"
+                        class="cursor-pointer px-4 shadow-xl rounded-lg p-2 justify-center bg-[#0A6CFF] font-bold text-white"
+                        id="add_income_btn">
+                </div>
+
+
+            </div>
+           
 
         </main>
 
 
     </div>
 
-    <script src="../script.js"></script>
+
+<script>
+let new_expense_catagory = document.getElementById('new_expense_catagory');
+let new_income_catagory = document.getElementById('new_income_catagory');
+let add_expense_btn = document.getElementById('add_expense_btn');
+let add_income_btn = document.getElementById('add_income_btn');
+
+// let expense = [];
+// let income = [];
+let expense_data = localStorage.getItem('expense');
+let income_data = localStorage.getItem('income');
+
+if (expense_data) {
+    expense = JSON.parse(expense_data);
+}
+if (income_data) {
+    income = JSON.parse(income_data);
+}
+
+add_expense_btn.addEventListener('click', () => {
+    let enteredValue = new_expense_catagory.value;
+    // Check if the entered value already exists in the array
+    if (!expense.includes(enteredValue)) {
+        expense.push(enteredValue);
+        localStorage.setItem('expense', JSON.stringify(expense));
+        new_expense_catagory.value = '';
+    } else {
+        alert('Category already exists!');
+    }
+});
+
+add_income_btn.addEventListener('click', () => {
+    let enteredValue = new_income_catagory.value;
+    // Check if the entered value already exists in the array
+    if (!income.includes(enteredValue)) {
+        income.push(enteredValue);
+        localStorage.setItem('income', JSON.stringify(income)); 
+        new_income_catagory.value = '';
+    } else {
+        alert('Category already exists!');
+    }
+});
+
+
+</script>
+
+<!-- <script src="../script.js"></script> -->
+
 </body>
 
 </html>

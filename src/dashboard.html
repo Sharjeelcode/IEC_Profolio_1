@@ -10,14 +10,14 @@
 <style>
     #t_body tr td{
         white-space: nowrap ;
-        border: 2px solid;
-        padding: 10px;
+        border: 2px solid #DEDEDE;
+        padding: 5px;
         text-align: center;
     }
     .t_head th{
         white-space: nowrap ;
-        border: 2px solid;
-        padding: 10px;
+        border: 2px solid #DEDEDE; 
+        padding: 5px;
     }
 </style>
 <body>
@@ -82,7 +82,7 @@
                             name="Amount" id="amount">
                     </div>
                 </div>
-                <div class="flex justify-center">
+                <div class="flex justify-center ">
                     <input type="submit" value="Save"
                         class="cursor-pointer px-4 shadow-xl rounded-lg p-2 justify-center bg-[#0A6CFF] font-bold text-white" id="save_records">
                 </div>
@@ -92,10 +92,11 @@
                 <table class="w-full border-2 ">
                     <tr class="t_head">
                         <th>Date</th>
-                        <th>Transaction type</th>
+                        <th>Trans type</th>
                         <th>Category</th>
                         <th>Amount</th>
                         <th>Note</th>
+                        <th>Delete</th>
                     </tr>
                     <tbody id="t_body">
                        

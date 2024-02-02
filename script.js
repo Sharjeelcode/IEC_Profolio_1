@@ -3,7 +3,7 @@ let users = []
 let userdata = localStorage.getItem('users')
 let activeuser = localStorage.getItem('activeUser')
 let active;
-let $active_user_data ;
+let $active_user_data;
 if (userdata) {
     users = JSON.parse(userdata)
 }
@@ -19,10 +19,9 @@ if (!active) {
 // checking activeuser ends
 
 // ******Dashboard*******
-// Get today's date in the format "YYYY-MM-DD"
 const today = new Date().toISOString().split('T')[0];
 
-console.log($active_user_data);
+
 
 let $date = document.getElementById('SelectDate').value = today
 let $transactiontype = document.getElementById("transactiontype")
@@ -32,16 +31,19 @@ let $note = document.getElementById("note")
 let $t_body = document.getElementById("t_body")
 let $save_records = document.getElementById("save_records");
 
-let income_catagory = ["Utilities", "Grocery", "Rent", "Health", "Education"]
-let expense_catagory = ["Salary", "Commission", "Bonus"]
+
+
+
+let expense = JSON.parse(localStorage.getItem('expense'))
+let income = JSON.parse(localStorage.getItem('income'))
 
 function typecheck() {
     if ($transactiontype.value === "Expense") {
         $category.options.length = 0;  // Clear existing options
-        addOptionsToCategory(income_catagory);
-    } else if ($transactiontype.value === "Income"){
+        addOptionsToCategory(expense);
+    } else if ($transactiontype.value === "Income") {
         $category.options.length = 0;  // Clear existing options
-        addOptionsToCategory(expense_catagory);
+        addOptionsToCategory(income);
     }
 }
 
@@ -60,45 +62,97 @@ typecheck();
 // Event listener for changes in transaction type
 $transactiontype.addEventListener("change", typecheck);
 
-//To display data in table
+
+// Function to update local storage with the modified data
+
+
 function savedata() {
-    let t_row = document.createElement('tr')
+    let t_row = document.createElement('tr');
 
-    let date = document.createElement('td')
-    date.innerHTML = $date
-    t_row.appendChild(date)
+    let date = document.createElement('td');
+    date.innerHTML = $date;
+    t_row.appendChild(date);
 
+    let transactiontype = document.createElement('td');
+    transactiontype.innerHTML = $transactiontype.value;
+    t_row.appendChild(transactiontype);
 
-    let transactiontype = document.createElement('td')
-    transactiontype.innerHTML = $transactiontype.value
-    t_row.appendChild(transactiontype)
+    let category = document.createElement('td');
+    category.innerHTML = $category.value;
+    t_row.appendChild(category);
 
-    let category = document.createElement('td')
-    category.innerHTML = $category.value
-    t_row.appendChild(category)
+    let amount = document.createElement('td');
+    amount.innerHTML = $amount.value;
+    t_row.appendChild(amount);
 
-    let amount = document.createElement('td')
-    amount.innerHTML = $amount.value
-    t_row.appendChild(amount)
+    let note = document.createElement('td');
+    note.innerHTML = $note.value;
+    t_row.appendChild(note);
 
+    let deleteRow = document.createElement('td');
+    deleteRow.innerHTML = "❌";
+    deleteRow.className = "cursor-pointer";
+    t_row.appendChild(deleteRow);
 
-    let note = document.createElement('td')
-    note.innerHTML = $note.value
-    t_row.appendChild(note)
+    $t_body.appendChild(t_row);
 
-    $t_body.appendChild(t_row)
+    // Event listener for row deletion
+    deleteRow.addEventListener('click', () => {
+        t_row.remove();
+        updateLocalStorage(); // Update local storage after removing a row
+    });
+
+    // Clear input values after adding a row
+    $amount.value = "";
+    $note.value = "";
+
+    updateLocalStorage(); // Update local storage after adding a row
+}
+function updateLocalStorage() {
+    // Loop through the users array to find the active user
+    for (let i = 0; i < users.length; i++) {
+        if (users[i].email === activeuser) {
+            // Update the tableData in the active_user_data object
+            users[i].tableData = getTableData();
+            break; // Exit the loop once the active user is found and updated
+        }
+    }
+
+    // Update the local storage with the modified users array
+    localStorage.setItem('users', JSON.stringify(users));
 }
 
+// Function to retrieve tableData from the table rows
+function getTableData() {
+    let tableData = [];
+
+    // Loop through the table rows and store the data in an array
+    // for (let row of $t_body.rows) {
+    //     let rowData = {
+    //         date: row.cells[0].innerHTML,
+    //         transactionType: row.cells[1].innerHTML,
+    //         category: row.cells[2].innerHTML,
+    //         amount: row.cells[3].innerHTML,
+    //         note: row.cells[4].innerHTML
+    //     };
+    //     tableData.push(rowData);
+    // }
 
 
+
+    return tableData;
+}
+
+// Check if the element is present before adding the event listener
 
 $save_records.addEventListener('click', () => {
     if ($note.value === "" || $amount.value === "") {
-        alert("Fields are required!")
+        alert("Fields are required!");
     } else {
-        savedata()
+        savedata();
     }
-})
+});
+
 
 //setting section
 

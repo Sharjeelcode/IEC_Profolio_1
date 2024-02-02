@@ -38,45 +38,50 @@
 
 
 
-<script>
-    
-let sign_email = document.getElementById("sign_email")
-let signin_password = document.getElementById("signin_password")
-let signin_btn = document.getElementById("signin_btn");
-let users = []
+    <script>
 
-let localstorage = localStorage.getItem('users')
+        let sign_email = document.getElementById("sign_email")
+        let signin_password = document.getElementById("signin_password")
+        let signin_btn = document.getElementById("signin_btn");
+        let users = []
 
-if (localstorage) {
-    users  = JSON.parse(localstorage)
-}
+        let localstorage = localStorage.getItem('users')
 
-function useremail(email) {
-    return users.some(user => user.email === email);
-}
-function userpassword(email, password) {
-    return users.some(user => user.email === email && user.password === password);
-}
-function login() {
-    let email = sign_email.value
-    let password = signin_password.value
-
-    if (email === "" || password === "") {
-        alert("“Fields are required!")
-    }else if (useremail(email)) {
-        if (userpassword(email, password)) {
-            localStorage.setItem('activeUser',email)
-            location.replace('./dashboard.html');
-        } else {
-            alert("Invalid password");
+        if (localstorage) {
+            users = JSON.parse(localstorage)
         }
-    } else {
-        alert("Invalid email");
-    }
-}
 
-signin_btn.addEventListener('click',login)
-</script>
+        function useremail(email) {
+            return users.some(user => user.email === email);
+        }
+        function userpassword(email, password) {
+            return users.some(user => user.email === email && user.password === password);
+        }
+        function login() {
+            let email = sign_email.value
+            let password = signin_password.value
+
+            if (email === "" || password === "") {
+                alert("“Fields are required!")
+            } else if (useremail(email)) {
+                if (userpassword(email, password)) {
+                    localStorage.setItem('activeUser', email)
+                    location.replace('./dashboard.html');
+                } else {
+                    alert("Invalid password");
+                }
+            } else {
+                alert("Invalid email");
+            }
+            let income_catagory = ["Commission", "Salary", "Bonus"]
+            let expense_catagory = ["Utilities", "Grocery", "Rent", "Health", "Education"]
+
+            localStorage.setItem('income', JSON.stringify(income_catagory))
+            localStorage.setItem('expense', JSON.stringify(expense_catagory))
+        }
+
+        signin_btn.addEventListener('click', login)
+    </script>
 
 </body>
 
