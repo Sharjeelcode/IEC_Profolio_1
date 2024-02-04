@@ -74,6 +74,23 @@
 
 
 <script>
+let users = []
+let userdata = localStorage.getItem('users')
+let activeuser = localStorage.getItem('activeUser')
+let active;
+let $active_user_data;
+if (userdata) {
+    users = JSON.parse(userdata)
+}
+users.forEach(element => {
+    if (element.email === activeuser) {
+        active = true
+        $active_user_data = element
+    }
+});
+if (!active) {
+    location.replace('./signin.html')
+}    
 let new_expense_catagory = document.getElementById('new_expense_catagory');
 let new_income_catagory = document.getElementById('new_income_catagory');
 let add_expense_btn = document.getElementById('add_expense_btn');
@@ -99,7 +116,7 @@ add_expense_btn.addEventListener('click', () => {
         localStorage.setItem('expense', JSON.stringify(expense));
         new_expense_catagory.value = '';
     } else {
-        alert('Category already exists!');
+        alert('Duplicate Category!');
     }
 });
 
@@ -111,7 +128,7 @@ add_income_btn.addEventListener('click', () => {
         localStorage.setItem('income', JSON.stringify(income)); 
         new_income_catagory.value = '';
     } else {
-        alert('Category already exists!');
+        alert('Duplicate Category!');
     }
 });
 

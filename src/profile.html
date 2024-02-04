@@ -25,49 +25,106 @@
                   ">Dashboard<a>
                     <a href="income.html" class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Income</a>
                     <a href="expenses.html" class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Expense</a>
-                    <a href="catagory.html" class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Categories</a>
-                    <a href="settings.html" class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg  ">Settings</a>
-                    <a href="profile.html" class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg shadow-xl lg:border-r-4 border-[#0A6CFF] ">Profile</a>
+                    <a href="catagory.html"
+                        class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Categories</a>
+                    <a href="settings.html"
+                        class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg  ">Settings</a>
+                    <a href="profile.html"
+                        class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg shadow-xl lg:border-r-4 border-[#0A6CFF] ">Profile</a>
         </aside>
         <main class="w-[50%]  lg:w-[85%] ml-2">
-            <form action="" class="m-4 p-4 w-auto h-auto shadow-xl border-2 rounded-full ">  
-                <div class=" flex items-center justify-around mb-4">
-                    <div>
-                        <label for="SelectDate" class="text-lg font-bold ">Select Date:</label>
-                        <input type="date" id="SelectDate" class="rounded-2xl px-4 shadow-lg border-2">
+            <div class="m-4 p-4 w-auto h-auto shadow-xl border-2 rounded-xl ">
+                <h1 class="text-center font-bold text-lg mb-4">Change user password</h1>
+                <div class=" flex  flex-col items-center justify-around mb-4">
+                    <div class="mb-4">
+                        <span class="text-lg font-bold">Old password</span>
+                        <input type="text" class="border-2" id="old_password">
                     </div>
-                    <div>
-                        <label for="transactiontype" class="text-lg font-bold">Transaction type</label>
-                        <select name="transactiontype" id="transactiontype" class="rounded-2xl px-4 shadow-lg border-2 ">
-                            <option value="Expense">Expense</option>
-                            <option value="Income">Income</option>
-                        </select>
+                    <div class="mb-4">
+                        <span class="text-lg font-bold">New password</span>
+                        <input type="text" class="border-2" id="new_password">
                     </div>
-                    <div>
-                        <label for="category" class="text-lg font-bold">Category :</label>
-                        <select name="category" id="category" class="rounded-2xl px-4 shadow-lg border-2">
-                            <option value="fuel">Utilities</option>
-                            <option value="food">Grocery</option>
-                            <option value="grocery">Rent</option>
-                            <option value="medicine">Health</option>
-                            <option value="shopping">Education</option>
-                            <option value="travling">Salary</option>
-                            <option value="salery">Commission</option>
-                            <option value="bussines">Bonus</option>
-                        </select>
+                    <div class="mb-4">
+                        <span class="text-lg font-bold">Confirm new password</span>
+                        <input type="text" class="border-2" id="confirm_new_password">
                     </div>
+
                 </div>
                 <div class="flex justify-center">
-                    <input type="submit" value="Save"
-                        class="cursor-pointer px-4 shadow-xl rounded-lg p-2 justify-center bg-[#0A6CFF] font-bold text-white">
+                    <input type="submit" value="Submit"
+                        class="cursor-pointer px-4 shadow-xl rounded-lg p-2 justify-center bg-[#0A6CFF] font-bold text-white"
+                        id="submit_btn">
                 </div>
-            </form>
+            </div>
 
         </main>
 
 
     </div>
 
+    <script>
+        // checking authentication
+        let users = []
+        let userdata = localStorage.getItem('users')
+        let activeuser = localStorage.getItem('activeUser')
+        let active;
+        let $active_user_data;
+        if (userdata) {
+            users = JSON.parse(userdata)
+        }
+        users.forEach((element, index) => {
+            if (element.email === activeuser) {
+                active = true
+                $active_user_data = element;
+
+            }
+        });
+        if (!active) {
+            location.replace('./signin.html')
+        }
+        let old_password = document.getElementById('old_password')
+        let new_password = document.getElementById('new_password')
+        let confirm_new_password = document.getElementById('confirm_new_password')
+        let submit_btn = document.getElementById('submit_btn')
+
+        function updateLocalStorage() {
+            if (old_password.value === "" || confirm_new_password.value === "" || new_password.value === "") {
+                alert("all fields require")
+            } else {
+                // Loop through the users array to find the active user and set password
+                for (let i = 0; i < users.length; i++) {
+                    if (users[i].email === activeuser) {
+                        users[i].password = reset_password();
+                        break;
+                        console.log(users[i]);
+                    }
+                }
+                //set new password function
+                function reset_password() {
+                    let newpass = $active_user_data.password;
+                    if ($active_user_data.password == old_password.value) {
+                        if (new_password.value === confirm_new_password.value) {
+                            newpass = new_password.value
+                            old_password.value = ""
+                            new_password.value = ""
+                            confirm_new_password.value = ""
+                            location.replace('./signin.html')
+                        } else {
+                            alert("Password does not match")
+                        }
+                    } else {
+                        alert("Old password didn’t match!")
+                    }
+                    return newpass;
+                }
+                localStorage.setItem('users', JSON.stringify(users));
+            }
+        }
+
+        // reset_password()
+        submit_btn.addEventListener('click', updateLocalStorage)
+
+    </script>
 
 </body>
 
