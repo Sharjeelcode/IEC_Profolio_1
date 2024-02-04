@@ -7,7 +7,19 @@
     <title>Catagory</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
+<style>
+    #t_body tr td{
+        white-space: nowrap ;
+        border: 2px solid #DEDEDE;
+        padding: 10px;
+        text-align: center;
+    }
+    .t_head th{
+        white-space: nowrap ;
+        border: 2px solid #DEDEDE; 
+        padding: 10px;
+    }
+</style>
 <body>
     <nav class="h-12 w-full flex justify-between z-50 items-center sticky top-0 bg-[#F1F4F5] shadow-lg">
         <div class="flex items-center ml-2">
@@ -33,34 +45,12 @@
             <form action="" class="m-4 p-4 w-auto h-auto shadow-xl border-2 rounded-full ">  
                 <div class=" flex items-center justify-around mb-4">
                     <div>
-                        <label for="SelectDate" class="text-lg font-bold ">Select Date:</label>
-                        <input type="date" id="SelectDate" class="rounded-2xl px-4 shadow-lg border-2">
-                    </div>
-                    <div>
-                        <label for="transactiontype" class="text-lg font-bold">Transaction type</label>
+                        <label for="transactiontype" class="text-lg font-bold">Select Transaction type</label>
                         <select name="transactiontype" id="transactiontype" class="rounded-2xl px-4 shadow-lg border-2 ">
                             <option value="Expense">Expense</option>
                             <option value="Income">Income</option>
                         </select>
                     </div>
-                    <div>
-                        <label for="category" class="text-lg font-bold">Category :</label>
-                        <select name="category" id="category" class="rounded-2xl px-4 shadow-lg border-2">
-                            <option value="fuel">Utilities</option>
-                            <option value="food">Grocery</option>
-                            <option value="grocery">Rent</option>
-                            <option value="medicine">Health</option>
-                            <option value="shopping">Education</option>
-                            <option value="travling">Salary</option>
-                            <option value="salery">Commission</option>
-                            <option value="bussines">Bonus</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="flex justify-center">
-                    <input type="submit" value="Save"  id="save_records"
-                        class="cursor-pointer px-4 shadow-xl rounded-lg p-2 justify-center bg-[#0A6CFF] font-bold text-white">
                 </div>
 
 
@@ -89,7 +79,87 @@
 
     </div>
 
-<script src="../script.js"></script>
+
+
+  
+<script>
+    let users = []
+    let userdata = localStorage.getItem('users')
+    let activeuser = localStorage.getItem('activeUser')
+    let active;
+    let $active_user_data;
+    let tabledata;
+
+    if (userdata) {
+        users = JSON.parse(userdata)
+    }
+
+    users.forEach(element => {
+        if (element.email === activeuser) {
+            active = true
+            $active_user_data = element
+        }
+    });
+
+    if (!active) {
+        location.replace('./signin.html')
+    }
+
+    tabledata = $active_user_data.tableData || [];
+
+    console.log($active_user_data);
+    console.log(tabledata);
+
+    function updateTable(transactionType) {
+        let tbody = document.getElementById('t_body');
+        tbody.innerHTML = ''; // Clear existing table rows
+
+        tabledata.forEach(rowData => {
+            if (!transactionType || rowData.transactionType === transactionType) {
+                let t_row = createTableRow(rowData);
+                tbody.appendChild(t_row);
+            }
+        });
+    }
+
+    function createTableRow(rowData) {
+        let t_row = document.createElement('tr');
+
+        // Populate the table row with data
+        for (let key in rowData) {
+            let cell = document.createElement('td');
+            cell.innerHTML = rowData[key];
+            t_row.appendChild(cell);
+        }
+
+        // Add delete event listener
+        let deleteRow = document.createElement('td');
+        deleteRow.innerHTML = '❌';
+        deleteRow.className = 'cursor-pointer';
+        t_row.appendChild(deleteRow);
+
+        deleteRow.addEventListener('click', () => {
+            t_row.remove();
+        });
+
+        return t_row;
+    }
+
+    // Call the updateTable function on page load based on the selected transaction type
+    window.addEventListener('load', () => {
+        let transactionType = document.getElementById('transactiontype').value;
+        updateTable(transactionType);
+    });
+
+    // Event listener for changes in transaction type
+    document.getElementById('transactiontype').addEventListener('change', function () {
+        let transactionType = this.value;
+        updateTable(transactionType);
+    });
+
+</script>
+
+
 </body>
 
 </html>

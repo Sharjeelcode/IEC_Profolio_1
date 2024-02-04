@@ -18,6 +18,7 @@ if (!active) {
 }
 // checking activeuser ends
 
+
 // ******Dashboard*******
 const today = new Date().toISOString().split('T')[0];
 
@@ -175,9 +176,6 @@ $save_records.addEventListener('click', () => {
 });
 
 
-// Function to initialize the table with user's data on page load
-// Function to initialize the table with user's data on page load
-// Function to initialize the table with user's data on page load
 // Function to initialize the table with user's data on page load
 function initializeTable(transactionType = null) {
     // Get the user's data from local storage
