@@ -21,8 +21,9 @@
     }
 </style>
 <body>
-    <nav class="h-12 w-full flex justify-between z-50 items-center sticky top-0 bg-[#F1F4F5] shadow-lg">
+    <nav class="h-12  flex justify-between z-50 items-center sticky top-0 bg-[#F1F4F5] shadow-lg">
         <div class="flex items-center ml-2">
+            <img src="../assts/burger-menu.svg" class="lg:hidden  h-10" id="menu-btn">
             <img class="h-12" src="../assts/app logo.png" alt="">
             <h1 class="text-sm md:text-lg font-bold md:block">FinTrackr</h1>
         </div>
@@ -33,7 +34,7 @@
     </nav>
     <div class=" lg:flex">
         <aside
-            class="hidden w-full h-auto  lg:w-[15%]   bg-[#F1F4F5] shadow-lg shadow-black ow-black lg:h-[92vh] sticky top-12  lg:flex lg:flex-col">
+            class="w-full h-auto  lg:w-[15%]   bg-[#F1F4F5] shadow-lg shadow-black ow-black lg:h-[92vh] sticky top-12 text-center lg:text-left flex flex-col">
             <a href="dashboard.html" class="mt-4 lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg  
                  shadow-xl lg:border-r-4 border-[#0A6CFF]">Dashboard<a>
                     <a href="income.html" class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Income</a>
@@ -45,8 +46,8 @@
                     <a href="signin.html" class="bg-[#0A6CFF] m-4 rounded-lg text-white  font-bold text-lg p-2 hover:shadow-lg text-center">Logout</a>
                     
         </aside>
-        <main class="w-full   lg:w-[85%] ml-2">
-            <div class="m-4 p-4 w-auto h-auto shadow-xl border-2 rounded-2xl ">
+        <main class="   lg:w-[85%] ml-2">
+            <div class="m-4 p-4 w-auto h-auto  shadow-xl border-2 rounded-2xl ">
                 <div class="flex-col  lg:flex-row  flex items-center justify-around mb-4">
                     <div>
                         <label for="SelectDate" class="text-lg font-bold ">Select Date:</label>
@@ -63,21 +64,13 @@
                     <div>
                         <label for="category" class="text-lg font-bold">Category :</label>
                         <select name="category" id="category" class="rounded-2xl px-4 shadow-lg border-2">
-                            <!-- <option value="Utilities">Utilities</option>
-                            <option value="Grocery">Grocery</option>
-                            <option value="grocery">Rent</option>
-                            <option value="Rent">Health</option>
-                            <option value="Education">Education</option>
-                            <option value="Salary">Salary</option>
-                            <option value="Commission">Commission</option>
-                            <option value="Bonus">Bonus</option> -->
                         </select>
                     </div>
                 </div>
                 <div class="flex-col lg:flex-row flex items-center justify-center mb-4">
                     <div class="flex items-center">
                         <label for="note" class="lg:text-lg font-bold">Note:</label>
-                        <textarea name="note" id="note" class="rounded shadow-lg border-2 h-auto w-96"></textarea>
+                        <input name="note" id="note" class="rounded shadow-lg border-2 h-auto lg:w-96"></input>
                     </div>
                     <div>
                         <label for="number" class="lg:text-lg font-bold">Amount:</label>
@@ -107,76 +100,32 @@
                 </table>
 
             </div>
-
-
         </main>
     </div>
-    <!-- <script>
-        // checking activeuser starts
-        let users = []
-        let userdata = localStorage.getItem('users')
-        if (userdata) {
-            users = JSON.parse(userdata)
-        }
-        let activeuser = localStorage.getItem('activeUser')
-        let active;
-        users.forEach(element => {
-            if (element.email === activeuser) {
-                active = true
+
+    <script>
+        // Add this script at the end of your body tag
+
+        // Get references to the menu button and aside element
+        const menuBtn = document.getElementById('menu-btn');
+        const aside = document.querySelector('aside');
+
+        // Add event listener to the menu button
+        menuBtn.addEventListener('click', toggleMenu);
+        function toggleMenu() {
+            // Toggle the visibility of the aside element
+            aside.classList.toggle('hidden');
+            // Change the image source based on the menu state
+            const menuIcon = document.getElementById('menu-icon');
+            if (aside.classList.contains('hidden')) {
+                // If the aside is hidden, use the closed menu icon
+                menuIcon.src = '../assts/burger-menu.svg';
+            } else {
+                // If the aside is visible, use the open menu icon
+                menuIcon.src = '../assts/cros.png';
             }
-        });
-        if (!active) {
-            location.replace('./signin.html')
         }
-        // checking activeuser ends
-
-        // Get today's date in the format "YYYY-MM-DD"
-        const today = new Date().toISOString().split('T')[0];
-
-        let $date = document.getElementById('SelectDate').value = today
-        let $transactiontype = document.getElementById("transactiontype")
-        let $category = document.getElementById("category")
-        let $amount = document.getElementById("amount")
-        let $note = document.getElementById("note")
-        let $t_body = document.getElementById("t_body")
-        let $save_records = document.getElementById("save_records")
-        console.log($category.value);
-        function savedata() {
-            let t_row = document.createElement('tr')
-
-            let date = document.createElement('td')
-            date.innerHTML = $date
-            t_row.appendChild(date)
-            let transactiontype = document.createElement('td')
-            transactiontype.innerHTML = $transactiontype.value
-            t_row.appendChild(transactiontype)
-            let category = document.createElement('td')
-            category.innerHTML = $category.value
-            t_row.appendChild(category)
-            let amount = document.createElement('td')
-            amount.innerHTML = $amount.value
-            t_row.appendChild(amount)
-            let note = document.createElement('td')
-            note.innerHTML = $note.value
-            t_row.appendChild(note)
-
-            $t_body.appendChild(t_row)
-
-
-        }
-
-
-
-
-        $save_records.addEventListener('click',savedata)
-
-
-
-
-
-
-
-    </script> -->
+    </script>
 
     <script src="../script.js"></script>
 </body>
