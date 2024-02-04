@@ -59,12 +59,30 @@
                 </div>
                 
                 <div class="flex justify-center">
-                    <input type="submit" value="Save"
+                    <input type="submit" value="Save"  id="save_records"
                         class="cursor-pointer px-4 shadow-xl rounded-lg p-2 justify-center bg-[#0A6CFF] font-bold text-white">
                 </div>
 
 
             </form>
+            <div class="overflow-x-auto mr-2  w-full overflow-y-auto ">
+
+                <table class="w-full border-2 ">
+                    <tr class="t_head">
+                        <th>Date</th>
+                        <th>Transaction type</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Note</th>
+                        <th>Delete</th>
+
+                    </tr>
+                    <tbody id="t_body">
+                       
+                    </tbody>
+                </table>
+
+            </div>
 
         </main>
 

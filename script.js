@@ -67,8 +67,9 @@ $transactiontype.addEventListener("change", typecheck);
 
 
 function savedata() {
+    // Create a new row for the table
     let t_row = document.createElement('tr');
-
+    // Create cells for each column in the table
     let date = document.createElement('td');
     date.innerHTML = $date;
     t_row.appendChild(date);
@@ -94,20 +95,40 @@ function savedata() {
     deleteRow.className = "cursor-pointer";
     t_row.appendChild(deleteRow);
 
+    // Append the new row to the table body
     $t_body.appendChild(t_row);
 
-    // Event listener for row deletion
-    deleteRow.addEventListener('click', () => {
-        t_row.remove();
-        updateLocalStorage(); // Update local storage after removing a row
-    });
+    // Create a new object for the row data
+    let rowData = {
+        date: $date,
+        transactionType: $transactiontype.value,
+        category: $category.value,
+        amount: $amount.value,
+        note: $note.value
+    };
+
+    // Loop through the users array to find the active user
+    for (let i = 0; i < users.length; i++) {
+        if (users[i].email === activeuser) {
+            // Check if tableData exists in the user's data
+            if (!users[i].tableData) {
+                users[i].tableData = [];
+            }
+
+            // Append the new row data to the existing tableData
+            users[i].tableData.push(rowData);
+            break; // Exit the loop once the active user is found and updated
+        }
+    }
+
+    // Update the local storage with the modified users array
+    localStorage.setItem('users', JSON.stringify(users));
 
     // Clear input values after adding a row
     $amount.value = "";
     $note.value = "";
-
-    updateLocalStorage(); // Update local storage after adding a row
 }
+
 function updateLocalStorage() {
     // Loop through the users array to find the active user
     for (let i = 0; i < users.length; i++) {
@@ -126,17 +147,17 @@ function updateLocalStorage() {
 function getTableData() {
     let tableData = [];
 
-    // Loop through the table rows and store the data in an array
-    // for (let row of $t_body.rows) {
-    //     let rowData = {
-    //         date: row.cells[0].innerHTML,
-    //         transactionType: row.cells[1].innerHTML,
-    //         category: row.cells[2].innerHTML,
-    //         amount: row.cells[3].innerHTML,
-    //         note: row.cells[4].innerHTML
-    //     };
-    //     tableData.push(rowData);
-    // }
+   // Loop through the table rows and store the data in an array
+    for (let row of $t_body.rows) {
+        let rowData = {
+            date: row.cells[0].innerHTML,
+            transactionType: row.cells[1].innerHTML,
+            category: row.cells[2].innerHTML,
+            amount: row.cells[3].innerHTML,
+            note: row.cells[4].innerHTML
+        };
+        tableData.push(rowData);
+    }
 
 
 
@@ -154,7 +175,82 @@ $save_records.addEventListener('click', () => {
 });
 
 
-//setting section
+// Function to initialize the table with user's data on page load
+// Function to initialize the table with user's data on page load
+// Function to initialize the table with user's data on page load
+// Function to initialize the table with user's data on page load
+function initializeTable(transactionType = null) {
+    // Get the user's data from local storage
+    let userData = JSON.parse(localStorage.getItem('users'));
+
+    // Find the active user's data
+    let activeUserData = userData.find(user => user.email === activeuser);
+
+    // Check if active user data is available
+    if (activeUserData && activeUserData.tableData) {
+        let filteredTableData;
+
+        // Filter the table data based on the transaction type
+        if (transactionType) {
+            filteredTableData = activeUserData.tableData.filter(row => row.transactionType === transactionType);
+        } else {
+            filteredTableData = activeUserData.tableData;
+        }
+
+        // Clear existing table rows
+        $t_body.innerHTML = '';
+
+        // Loop through the filtered table data and populate the DOM
+        filteredTableData.forEach(rowData => {
+            let t_row = createTableRow(rowData);
+            $t_body.appendChild(t_row);
+        });
+    }
+}
+
+
+
+// Function to create a table row based on rowData
+function createTableRow(rowData) {
+    let t_row = document.createElement('tr');
+
+    // Populate the table row with data
+    for (let key in rowData) {
+        let cell = document.createElement('td');
+        cell.innerHTML = rowData[key];
+        t_row.appendChild(cell);
+    }
+
+    // Add delete event listener
+    let deleteRow = document.createElement('td');
+    deleteRow.innerHTML = "❌";
+    deleteRow.className = "cursor-pointer";
+    t_row.appendChild(deleteRow);
+
+    deleteRow.addEventListener('click', () => {
+        t_row.remove();
+        updateLocalStorage();
+    });
+
+    return t_row;
+}
+
+// Call the initializeTable function on page load based on the page location
+window.addEventListener('load', () => {
+    let pageLocation = window.location.href; // Get the current page URL
+    let transactionType;
+
+    if (pageLocation.includes('/income.html')) {
+        transactionType = 'Income';
+    } else if (pageLocation.includes('/expenses.html')) {
+        transactionType = 'Expense';
+    }
+
+    // Call initializeTable with the determined transactionType or without an argument
+    initializeTable(transactionType);
+});
+
+
 
 
 
