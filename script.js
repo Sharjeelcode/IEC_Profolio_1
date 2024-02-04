@@ -249,7 +249,10 @@ window.addEventListener('load', () => {
 });
 
 
-
+//username show in navbar
+let username = document.getElementById('username')
+let fullname = $active_user_data.fullname
+username.innerHTML = fullname.toUpperCase()
 
 
 
