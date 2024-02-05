@@ -6,31 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="../assts/fav-removebg-preview.png">
 </head>
-
+<style>
+    main {
+      background-image: url(../assts/dd.avif);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+      .signup_form{
+          backdrop-filter: blur(10px);
+          background-color: rgba(255, 255, 255, 0.362);
+      }
+  </style>
 <body>
-    <nav class="h-12 flex justify-between items-center sticky top-0 bg-[#F1F4F5] shadow-lg">
-        <div class="flex items-center ml-2"> 
-            
+    <nav class="h-12  flex justify-between z-50 items-center sticky text-white top-0 bg-gray-900 shadow-sm shadow-white">
+        <div class="flex items-center ml-2">
             <img class="h-12" src="../assts/app logo.png" alt="">
-            <h1 class="hidden font-bold md:block">FinTrackr</h1>
+            <h1 class=" md:text-lg font-bold md:block">FinTrackr</h1>
         </div>
-        <div class="mr-8 font-bold text-lg shadow-lg bg-[#0A6CFF] p-1 rounded text-white">
+        <div class="mr-2 md:mr-6 font-bold text-lg shadow-lg bg-[#0A6CFF] p-1 rounded text-white">
             <a href="../index.html" class="">Register</a>
         </div>
     </nav>
-    <main class=" flex justify-center items-center w-full lg:h-[80vh] md:w-auto ">
-        <div class="m-4 w-full  lg:w-[40vw] md:h-auto rounded-3xl shadow-2xl  border-2  ">
+    <main class="flex justify-center items-center h-[95vh]">
+        <div class="signup_form m-4 w-full  lg:w-[40vw] md:h-auto rounded-3xl shadow-2xl  border-2 ">
             <div class="m-4 flex flex-col">
                 <h1 class="lg:text-lg font-bold">Email</h1>
                 <input class="lg:text-lg outline-none w-full border-2 shadow-xl rounded  mb-2" type="email" name="email"
-                    id="sign_email">
+                    id="sign_email" autocomplete="off">
                 <h1 class="lg:text-lg font-bold">Password</h1>
                 <input class="lg:text-lg outline-none w-full border-2 shadow-xl rounded  mb-2" type="password"
                     id="signin_password">
                 <div class="flex justify-center">
                     <input type="submit" value="SignIn"
-                        class="cursor-pointer border-2 shadow-xl rounded-lg p-2 justify-center bg-[#0A6CFF] font-bold text-white"
+                        class="cursor-pointer  shadow-xl rounded-lg p-2 justify-center bg-[#0A6CFF] font-bold text-white"
                         id="signin_btn">
                 </div>
             </div>

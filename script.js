@@ -99,6 +99,11 @@ function savedata() {
     // Append the new row to the table body
     $t_body.appendChild(t_row);
 
+    deleteRow.addEventListener('click', () => {
+        t_row.remove();
+        updateLocalStorage();
+    });
+
     // Create a new object for the row data
     let rowData = {
         date: $date,
@@ -129,6 +134,7 @@ function savedata() {
     $amount.value = "";
     $note.value = "";
 }
+
 
 function updateLocalStorage() {
     // Loop through the users array to find the active user

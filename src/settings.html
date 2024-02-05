@@ -6,40 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="../assts/fav-removebg-preview.png">
 </head>
 
 <body>
-    <nav class="h-12 w-full flex justify-between z-50 items-center sticky top-0 bg-[#F1F4F5] shadow-lg">
+    <nav class="h-12  flex justify-between z-50 items-center sticky text-white top-0 bg-gray-900 shadow-sm shadow-white">
         <div class="flex items-center ml-2">
+            <img src="../assts/menu.png" class="md:hidden w-6 h-6" id="menu-btn">
             <img class="h-12" src="../assts/app logo.png" alt="">
-            <h1 class="text-sm md:text-lg font-bold md:block">FinTrackr</h1>
+            <h1 class=" md:text-lg font-bold md:block">FinTrackr</h1>
         </div>
         <div class="flex items-center">
-            <span id="username" class="text-lg" ></span>
+            <span id="username" class=" md:text-lg mr-2"></span>
             <img src="../assts/user.png" alt="" class="w-8 h-8 mr-2 rounded-full">
         </div>
-      
     </nav>
     <div class=" lg:flex">
         <aside
-            class="hidden w-full h-auto  lg:w-[15%]   bg-[#F1F4F5] shadow-lg shadow-black ow-black lg:h-[92vh] sticky top-12  lg:flex lg:flex-col">
-            <a href="dashboard.html" class="mt-4 lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg  
-                  ">Dashboard<a>
-                    <a href="income.html" class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Income</a>
-                    <a href="expenses.html" class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Expense</a>
+            class="hidden flex w-full md:w-[15%]  bg-slate-800  text-white shadow-lg shadow-black ow-black md:h-[93vh] sticky top-12 text-center md:text-left  md:flex flex-col">
+            <a href="dashboard.html" class="mt-4 md:mb-4 md:py-4 font-bold text-lg pl-4 hover:  
+                   ">Dashboard<a>
+                    <a href="income.html" class="md:mb-4 md:py-4 font-bold text-lg pl-4 hover:shadow-lg  ">Income</a>
+                    <a href="expenses.html" class="md:mb-4 md:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Expense</a>
                     <a href="catagory.html"
-                        class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Categories</a>
-                    <a href="settings.html"
-                        class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg  shadow-xl lg:border-r-4 border-[#0A6CFF]">Settings</a>
-                    <a href="profile.html" class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Profile</a>
-                    <a href="signin.html" class="bg-[#0A6CFF] m-4 rounded-lg text-white  font-bold text-lg p-2 hover:shadow-lg text-center">Logout</a>
+                        class="md:mb-4 md:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Categories</a>
+                    <a href="settings.html" class="md:mb-4 md:py-4 font-bold text-lg pl-4 hover:shadow-lg shadow-xl md:border-r-4 border-[#0A6CFF]">Settings</a>
+                    <a href="profile.html" class="md:mb-4 md:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Profile</a>
+                    <a href="signin.html"
+                        class="bg-[#0A6CFF] m-4 rounded-lg text-white  font-bold text-lg p-2 hover:shadow-lg text-center">Logout</a>
+
         </aside>
-        <main class="w-[50%]  lg:w-[85%] ml-2">
-            <div class="m-4 p-4 w-auto h-auto shadow-xl border-2 rounded-full ">
+        <main class=" flex-col md:flex-row flex justify-center  md:w-[50%]  lg:w-[85%] ml-2">
+            <div class="m-4 p-4 h-40  flex flex-col items-center shadow-xl border-2 rounded">
                 <h1 class="text-center text-lg font-bold">Add Expense categories</h1>
-                <div class=" flex items-center mb-4">
-                    <h1 class="text-lg mr-2">Enter catagory name : </h1>
-                    <input type="text" class="border-2 outline-none" id="new_expense_catagory">
+                <div class=" flex flex-col md:flex-row items-center mb-4">
+                    <h1 class="md:text-lg mr-2">Enter catagory name : </h1>
+                    <input type="text" class="border-2 outline-none" placeholder="New catagory" id="new_expense_catagory">
 
                 </div>
 
@@ -52,11 +54,11 @@
 
             </div>
            
-            <div class="m-4 p-4 w-auto h-auto shadow-xl border-2 rounded-full ">
+            <div class="m-4 p-4  h-40 shadow-xl border-2 rounded">
                 <h1 class="text-center text-lg font-bold">Add Income categories</h1>
-                <div class=" flex items-center mb-4">
-                    <h1 class="text-lg mr-2">Enter catagory name : </h1>
-                    <input type="text" class="border-2 outline-none" id="new_income_catagory">
+                <div class=" flex flex-col md:flex-row items-center mb-4">
+                    <h1 class="md:text-lg mr-2">Enter catagory name : </h1>
+                    <input type="text" class="border-2 outline-none" placeholder="New catagory" id="new_income_catagory">
 
                 </div>
 
@@ -140,9 +142,31 @@ let fullname = $active_user_data.fullname
 username.innerHTML = fullname.toUpperCase()
 
 
+        // Add this script at the end of your body tag
+
+        // Get references to the menu button and aside element
+        const menuBtn = document.getElementById('menu-btn');
+        const aside = document.querySelector('aside');
+
+        // Add event listener to the menu button
+        menuBtn.addEventListener('click', toggleMenu);
+        function toggleMenu() {
+            // Toggle the visibility of the aside element
+            aside.classList.toggle('hidden');
+            // Change the image source based on the menu state
+            // const menuIcon = document.getElementById('menu-icon');
+            if (aside.classList.contains('hidden')) {
+                // If the aside is hidden, use the closed menu icon
+                menuBtn.src = '../assts/menu.png';
+            } else {
+                // If the aside is visible, use the open menu icon
+                menuBtn.src = '../assts/cross.png';
+            }
+        }
+
+
 </script>
 
-<!-- <script src="../script.js"></script> -->
 
 </body>
 

@@ -1,91 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="../assts/fav-removebg-preview.png">
 </head>
 <style>
-    #t_body tr td{
-        white-space: nowrap ;
+    #t_body tr td {
+        white-space: nowrap;
         border: 2px solid #DEDEDE;
         padding: 5px;
         text-align: center;
     }
-    .t_head th{
-        white-space: nowrap ;
-        border: 2px solid #DEDEDE; 
+
+    .t_head th {
+        white-space: nowrap;
+        border: 2px solid #DEDEDE;
         padding: 5px;
     }
+
+    main {
+        background: linear-gradient(#ffffff, white);
+    }
 </style>
+
 <body>
-    <nav class="h-12  flex justify-between z-50 items-center sticky top-0 bg-[#F1F4F5] shadow-lg">
+    <nav
+        class="h-12  flex justify-between z-50 items-center sticky text-white top-0 bg-gray-900 shadow-sm shadow-white">
         <div class="flex items-center ml-2">
-            <img src="../assts/burger-menu.svg" class="lg:hidden  h-10" id="menu-btn">
+            <img src="../assts/menu.png" class="md:hidden w-6 h-6" id="menu-btn">
             <img class="h-12" src="../assts/app logo.png" alt="">
-            <h1 class="text-sm md:text-lg font-bold md:block">FinTrackr</h1>
+            <h1 class=" md:text-lg font-bold md:block">FinTrackr</h1>
         </div>
         <div class="flex items-center">
-            <span id="username" class="text-lg" ></span>
+            <span id="username" class=" md:text-lg mr-2"></span>
             <img src="../assts/user.png" alt="" class="w-8 h-8 mr-2 rounded-full">
         </div>
     </nav>
-    <div class=" lg:flex">
+    <div class=" md:flex">
         <aside
-            class="w-full h-auto  lg:w-[15%]   bg-[#F1F4F5] shadow-lg shadow-black ow-black lg:h-[92vh] sticky top-12 text-center lg:text-left flex flex-col">
-            <a href="dashboard.html" class="mt-4 lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg  
-                 shadow-xl lg:border-r-4 border-[#0A6CFF]">Dashboard<a>
-                    <a href="income.html" class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Income</a>
-                    <a href="expenses.html" class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Expense</a>
+            class="hidden flex w-full md:w-[15%]  bg-slate-800  text-white shadow-lg shadow-black ow-black md:h-[93vh] sticky top-12 text-center md:text-left  md:flex flex-col">
+            <a href="dashboard.html" class="mt-4 md:mb-4 md:py-4 font-bold text-lg pl-4 hover:  
+                 shadow-xl  md:border-r-4 border-[#0A6CFF]">Dashboard<a>
+                    <a href="income.html" class="md:mb-4 md:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Income</a>
+                    <a href="expenses.html" class="md:mb-4 md:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Expense</a>
                     <a href="catagory.html"
-                        class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Categories</a>
-                    <a href="settings.html" class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Settings</a>
-                    <a href="profile.html" class="lg:mb-4 lg:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Profile</a>
-                    <a href="signin.html" class="bg-[#0A6CFF] m-4 rounded-lg text-white  font-bold text-lg p-2 hover:shadow-lg text-center">Logout</a>
-                    
+                        class="md:mb-4 md:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Categories</a>
+                    <a href="settings.html" class="md:mb-4 md:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Settings</a>
+                    <a href="profile.html" class="md:mb-4 md:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Profile</a>
+                    <a href="signin.html"
+                        class="bg-[#0A6CFF] m-4 rounded-lg text-white  font-bold text-lg p-2 hover:shadow-lg text-center">Logout</a>
+
         </aside>
-        <main class="   lg:w-[85%] ml-2">
-            <div class="m-4 p-4 w-auto h-auto  shadow-xl border-2 rounded-2xl ">
-                <div class="flex-col  lg:flex-row  flex items-center justify-around mb-4">
-                    <div>
-                        <label for="SelectDate" class="text-lg font-bold ">Select Date:</label>
-                        <input type="date" id="SelectDate" class="rounded-2xl px-4 shadow-lg border-2">
+        <main class=" md:w-[85%] ml-2">
+            <div class=" m-4 p-1 shadow-xl border-2 rounded-xl ">
+                <div class="flex-col  md:flex-row  flex  justify-around mb-4">
+                    <div class="flex text-center justify-between">
+                        <h1 for="SelectDate" class="text-lg font-bold mr-2">Select Date:</h1>
+                        <input type="date" id="SelectDate" class="rounded md:px-4 shadow-lg border-2">
                     </div>
-                    <div>
-                        <label for="transactiontype" class="text-lg font-bold">Transaction type:</label>
-                        <select name="transactiontype" id="transactiontype"
-                            class="rounded-2xl px-4 shadow-lg border-2 ">
+                    <div class="flex text-center justify-between">
+                        <h1 for="transactiontype" class="text-lg font-bold mr-2">Transaction type:</h1>
+                        <select name="transactiontype" id="transactiontype" class="rounded md:px-4 shadow-lg border-2 ">
                             <option value="Expense">Expense</option>
                             <option value="Income">Income</option>
                         </select>
                     </div>
-                    <div>
-                        <label for="category" class="text-lg font-bold">Category :</label>
-                        <select name="category" id="category" class="rounded-2xl px-4 shadow-lg border-2">
+                    <div class="flex text-center justify-between">
+                        <h1 for="category" class="text-lg font-bold mr-2">Category :</h1>
+                        <select name="category" id="category" class="rounded md:px-4 shadow-lg border-2">
                         </select>
                     </div>
                 </div>
-                <div class="flex-col lg:flex-row flex items-center justify-center mb-4">
-                    <div class="flex items-center">
-                        <label for="note" class="lg:text-lg font-bold">Note:</label>
-                        <input name="note" id="note" class="rounded shadow-lg border-2 h-auto lg:w-96"></input>
+                <div class="flex-col md:flex-row flex  justify-evenly mb-4">
+                    <div class="flex items-center justify-between">
+                        <h1 for="note" class="md:text-lg font-bold mr-2">Note:</h1>
+                        <input name="note" id="note" class="rounded shadow-lg border-2 h-auto md:w-96"
+                            placeholder="About transection"></input>
                     </div>
-                    <div>
-                        <label for="number" class="lg:text-lg font-bold">Amount:</label>
-                        <input class="lg:text-lg outline-none  border-2 shadow-xl rounded  mb-2" type="number"
-                            name="Amount" id="amount">
+                    <div class="flex text-center justify-between">
+                        <h1 for="number" class="md:text-lg font-bold mr-2">Amount:</h1>
+                        <input class="md:text-lg outline-none  border-2 shadow-xl rounded  " type="number"
+                            placeholder="Enter amount" name="Amount" id="amount">
                     </div>
                 </div>
                 <div class="flex justify-center ">
                     <input type="submit" value="Save"
-                        class="cursor-pointer px-4 shadow-xl rounded-lg p-2 justify-center bg-[#0A6CFF] font-bold text-white" id="save_records">
+                        class="cursor-pointer md:px-4 shadow-xl rounded p-2 justify-center bg-[#0A6CFF] font-bold text-white"
+                        id="save_records">
                 </div>
             </div>
-            <div class="overflow-x-auto mr-2  w-full overflow-y-auto ">
 
-                <table class="w-full border-2 ">
+            <div class="overflow-x-auto mr-2 md:flex md:justify-center w-full overflow-y-auto ">
+
+                <table class="md:w-full border-2 ">
                     <tr class="t_head">
                         <th>Date</th>
                         <th>Trans type</th>
@@ -100,6 +110,7 @@
                 </table>
 
             </div>
+            
         </main>
     </div>
 
@@ -116,18 +127,19 @@
             // Toggle the visibility of the aside element
             aside.classList.toggle('hidden');
             // Change the image source based on the menu state
-            const menuIcon = document.getElementById('menu-icon');
+            // const menuIcon = document.getElementById('menu-icon');
             if (aside.classList.contains('hidden')) {
                 // If the aside is hidden, use the closed menu icon
-                menuIcon.src = '../assts/burger-menu.svg';
+                menuBtn.src = '../assts/menu.png';
             } else {
                 // If the aside is visible, use the open menu icon
-                menuIcon.src = '../assts/cros.png';
+                menuBtn.src = '../assts/cross.png';
             }
         }
     </script>
 
     <script src="../script.js"></script>
+
 </body>
 
 </html>
