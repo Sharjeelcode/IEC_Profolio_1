@@ -925,6 +925,10 @@ video {
     height: auto;
   }
 
+  .md\:h-40 {
+    height: 10rem;
+  }
+
   .md\:w-96 {
     width: 24rem;
   }
