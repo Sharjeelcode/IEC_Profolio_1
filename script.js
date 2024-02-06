@@ -244,9 +244,9 @@ window.addEventListener('load', () => {
     let pageLocation = window.location.href; // Get the current page URL
     let transactionType;
 
-    if (pageLocation.includes('/income.html')) {
+    if (pageLocation.includes('/income')) {
         transactionType = 'Income';
-    } else if (pageLocation.includes('/expenses.html')) {
+    } else if (pageLocation.includes('/expenses')) {
         transactionType = 'Expense';
     }
 
