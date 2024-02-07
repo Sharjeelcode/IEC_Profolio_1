@@ -870,6 +870,10 @@ video {
   line-height: 1.75rem;
 }
 
+.text-\[11px\] {
+  font-size: 11px;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -1040,6 +1044,10 @@ video {
 
   .md\:mr-6 {
     margin-right: 1.5rem;
+  }
+
+  .md\:mr-4 {
+    margin-right: 1rem;
   }
 
   .md\:block {
