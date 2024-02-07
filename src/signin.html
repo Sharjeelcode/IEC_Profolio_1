@@ -6,48 +6,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="../assts/fav-removebg-preview.png">
+    <link rel="icon" href="../assts/currency_dollar.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;1,200&family=Source+Code+Pro&display=swap"
+        rel="stylesheet">
 </head>
 <style>
-    main {
-      background-image: url(../assts/dd.avif);
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center center;
+    body {
+        font-family: 'Poppins',
+            sans-serif;
+
     }
-      .signup_form{
-          backdrop-filter: blur(10px);
-          background-color: rgba(255, 255, 255, 0.362);
-      }
-  </style>
+
+    .signin_form {
+        backdrop-filter: blur(10px);
+        background-color: rgba(255, 255, 255, 0.038);
+    }
+
+    input {
+        background: none;
+        color: white;
+
+    }
+</style>
 <body>
-    <nav class="h-12  flex justify-between z-50 items-center sticky text-white top-0 bg-gray-900 shadow-sm shadow-white">
+    <nav
+        class="h-12  flex justify-between z-50 items-center sticky text-white top-0 bg-[#6140E1] shadow-sm shadow-white">
         <div class="flex items-center ml-2">
-            <img class="h-12" src="../assts/app logo.png" alt="">
-            <h1 class=" md:text-lg font-bold md:block">FinTrackr</h1>
+            <h1 class=" md:text-lg font-bold md:block">
+                💰FinTrackr</h1>
         </div>
-        <div class="mr-2 md:mr-6 font-bold text-lg shadow-lg bg-[#0A6CFF] p-1 rounded text-white">
-            <a href="../index.html" class="">Register</a>
-        </div>
+        <h1 class="hidden md:block  text-center md:text-xl ">SignIn to Track your <span class="auto-type text-[#f4d366]"></span> </h1>
+        <a href="../index.html"
+            class="bg-gradient-to-r from-purple-400 to-purple-600 hover:from-purple-600 hover:to-purple-800 text-white font-bold py-2 px-3 rounded-full shadow-lg transform transition-all duration-500 ease-in-out hover:scale-110 hover:brightness-110 hover:animate-pulse active:animate-bounce mr-4">Register</a>
     </nav>
-    <main class="flex justify-center items-center h-[95vh]">
-        <div class="signup_form m-4 w-full  lg:w-[40vw] md:h-auto rounded-3xl shadow-2xl  border-2 ">
-            <div class="m-4 flex flex-col">
-                <h1 class="lg:text-lg font-bold">Email</h1>
-                <input class="lg:text-lg outline-none w-full border-2 shadow-xl rounded  mb-2" type="email" name="email"
-                    id="sign_email" autocomplete="off">
-                <h1 class="lg:text-lg font-bold">Password</h1>
-                <input class="lg:text-lg outline-none w-full border-2 shadow-xl rounded  mb-2" type="password"
-                    id="signin_password">
-                <div class="flex justify-center">
-                    <input type="submit" value="SignIn"
-                        class="cursor-pointer  shadow-xl rounded-lg p-2 justify-center bg-[#0A6CFF] font-bold text-white"
-                        id="signin_btn">
+    <main class="flex justify-center items-center h-[90vh] bg-purple-50">
+        <div class="flex h-[70%] bg-[#6140E1] w-[95%] md:h-[95%]  rounded-lg">
+            <img src="../assts/a2.webp" class="hidden md:block w-[50%] h-full rounded">
+            <div class="signin_form flex flex-col justify-between  m-4 w-full  md:h-auto rounded-3xl shadow-2xl">
+                <div class="m-4  h-full justify-evenly flex flex-col  ">
+                    <h1 class="text-lg md:text-xl font-bold text-center text-white">Email</h1>
+                    <input class="md:text-lg outline-none w-full  shadow-xl text-center rounded mb-2" type="email"
+                        autocomplete="off" name="Email" placeholder="name@gmail.com" id="sign_email" required title="Please enter a valid email address">
+                    <h1 class="text-lg md:text-xl font-bold text-center text-white">Password</h1>
+                    <input class="md:text-lg outline-none w-full  shadow-xl text-center rounded  mb-2" type="password"
+                        placeholder="Abcd1234" id="signin_password">
+                    <div class="flex justify-center">
+                        <button
+                            class="bg-gradient-to-r from-purple-400 to-purple-600 hover:from-purple-600 hover:to-purple-800 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition-all duration-500 ease-in-out hover:scale-110 hover:brightness-110 hover:animate-pulse active:animate-bounce"
+                            id="signin_btn">
+                            SignIn
+                        </button>
+
+                    </div>
                 </div>
             </div>
         </div>
     </main>
-
+   
 
 
     <script>
@@ -94,7 +112,17 @@
 
         signin_btn.addEventListener('click', login)
     </script>
+<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+<script>
+    //code for animated typing
+    var typed = new Typed('.auto-type',{
+        strings:['Expenses',"Income"],
+        typeSpeed : 150,
+        backSpeed : 150,
+        loop : true
+    })
 
+</script>
 </body>
 
 </html>
