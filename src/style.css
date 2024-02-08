@@ -572,6 +572,11 @@ video {
   margin: 1rem;
 }
 
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -743,6 +748,11 @@ video {
 .border-\[\#0A6CFF\] {
   --tw-border-opacity: 1;
   border-color: rgb(10 108 255 / var(--tw-border-opacity));
+}
+
+.border-\[\#6140E1\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(97 64 225 / var(--tw-border-opacity));
 }
 
 .bg-\[\#0A6CFF\] {

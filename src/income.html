@@ -6,9 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Income</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="../assts/fav-removebg-preview.png">
+    <link rel="icon" href="../assts/currency_dollar.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;1,200&family=Source+Code+Pro&display=swap"
+        rel="stylesheet">
 </head>
 <style>
+    * {
+        font-family: 'Poppins',
+            sans-serif;
+
+    }
     #t_body tr td {
         white-space: nowrap;
         border: 2px solid #DEDEDE;
@@ -24,11 +34,12 @@
 </style>
 
 <body>
-    <nav class="h-12  flex justify-between z-50 items-center sticky text-white top-0 bg-gray-900 shadow-sm shadow-white">
+    <nav
+        class="h-12  flex justify-between z-50 items-center sticky text-white top-0 bg-[#6140E1] shadow-sm shadow-white">
         <div class="flex items-center ml-2">
             <img src="../assts/menu.png" class="md:hidden w-6 h-6" id="menu-btn">
-            <img class="h-12" src="../assts/app logo.png" alt="">
-            <h1 class=" md:text-lg font-bold md:block">FinTrackr</h1>
+            <h1 class=" md:text-lg font-bold md:block">
+                💰FinTrackr</h1>
         </div>
         <div class="flex items-center">
             <span id="username" class=" md:text-lg mr-2"></span>
@@ -37,17 +48,17 @@
     </nav>
     <div class=" md:flex">
         <aside
-            class="hidden flex w-full md:w-[15%]  bg-slate-800  text-white shadow-lg shadow-black ow-black md:h-[93vh] sticky top-12 text-center md:text-left  md:flex flex-col">
+            class="hidden flex w-full md:w-[15%]  bg-[#6140E1]  text-white shadow-lg shadow-black ow-black md:h-[93vh] sticky top-12 text-center md:text-left  md:flex flex-col">
             <a href="dashboard.html" class="mt-4 md:mb-4 md:py-4 font-bold text-lg pl-4 hover:  
                    ">Dashboard<a>
-                    <a href="income.html" class="md:mb-4 md:py-4 font-bold text-lg pl-4 hover:shadow-lg  shadow-xl md:border-r-4 border-[#0A6CFF]">Income</a>
+                    <a href="income.html" class="md:mb-4 md:py-4 font-bold text-lg pl-4 hover:shadow-lg  shadow-xl md:border-r-4 ">Income</a>
                     <a href="expenses.html" class="md:mb-4 md:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Expense</a>
                     <a href="catagory.html"
                         class="md:mb-4 md:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Categories</a>
                     <a href="settings.html" class="md:mb-4 md:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Settings</a>
                     <a href="profile.html" class="md:mb-4 md:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Profile</a>
                     <a href="signin.html"
-                        class="bg-[#0A6CFF] m-4 rounded-lg text-white  font-bold text-lg p-2 hover:shadow-lg text-center">Logout</a>
+                        class="bg-gradient-to-r from-purple-400 to-purple-600 hover:from-purple-600 hover:to-purple-800 text-white text-center font-bold mx-4 py-3 px-6 rounded-full shadow-lg transform transition-all duration-500 ease-in-out hover:scale-110 hover:brightness-110 hover:animate-pulse active:animate-bounce">Logout</a>
 
         </aside>
         <main class=" md:w-[85%] ">
@@ -83,7 +94,7 @@
                 </div>
                 <div class="flex justify-center ">
                     <input type="submit" value="Save"
-                        class="cursor-pointer md:px-4 shadow-xl rounded p-2 justify-center bg-[#0A6CFF] font-bold text-white"
+                        class="bg-gradient-to-r from-purple-400 to-purple-600 hover:from-purple-600 hover:to-purple-800 text-white text-center font-bold mx-4 py-3 px-6 rounded-full shadow-lg transform transition-all duration-500 ease-in-out hover:scale-110 hover:brightness-110 hover:animate-pulse active:animate-bounce"
                         id="save_records">
                 </div>
             </div>
