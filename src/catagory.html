@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catagory</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="../assts/currency_dollar.png">
+    <link rel="icon" href="../assts/x-removebg-preview.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -40,6 +40,7 @@
         <h1 class=" md:text-lg font-bold md:block">
             💰FinTrackr</h1>
     </div>
+    <h1 class="hidden  md:flex text-center md:text-xl "><span class="hidden md:block">Track your <span class="auto-type text-[#f4d366]"></span></h1>
     <div class="flex items-center">
         <span id="username" class=" md:text-lg mr-2"></span>
         <img src="../assts/user.png" alt="" class="w-8 h-8 mr-2 rounded-full">
@@ -189,7 +190,17 @@
     }
 </script>
 
+<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+<script>
+    //code for animated typing
+    var typed = new Typed('.auto-type',{
+        strings:['Expenses',"Income"],
+        typeSpeed : 150,
+        backSpeed : 150,
+        loop : true
+    })
 
+</script>
 
 </body>
 

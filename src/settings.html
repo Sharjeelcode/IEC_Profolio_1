@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="../assts/currency_dollar.png">
+    <link rel="icon" href="../assts/x-removebg-preview.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -20,19 +20,22 @@
 
     }
 </style>
+
 <body>
     <nav
-    class="h-12  flex justify-between z-50 items-center sticky text-white top-0 bg-[#6140E1] shadow-sm shadow-white">
-    <div class="flex items-center ml-2">
-        <img src="../assts/menu.png" class="md:hidden w-6 h-6" id="menu-btn">
-        <h1 class=" md:text-lg font-bold md:block">
-            💰FinTrackr</h1>
-    </div>
-    <div class="flex items-center">
-        <span id="username" class=" md:text-lg mr-2"></span>
-        <img src="../assts/user.png" alt="" class="w-8 h-8 mr-2 rounded-full">
-    </div>
-</nav>
+        class="h-12  flex justify-between z-50 items-center sticky text-white top-0 bg-[#6140E1] shadow-sm shadow-white">
+        <div class="flex items-center ml-2">
+            <img src="../assts/menu.png" class="md:hidden w-6 h-6" id="menu-btn">
+            <h1 class=" md:text-lg font-bold md:block">
+                💰FinTrackr</h1>
+        </div>
+        <h1 class="hidden  md:flex text-center md:text-xl "><span class="hidden md:block">Track your <span
+                    class="auto-type text-[#f4d366]"></span></h1>
+        <div class="flex items-center">
+            <span id="username" class=" md:text-lg mr-2"></span>
+            <img src="../assts/user.png" alt="" class="w-8 h-8 mr-2 rounded-full">
+        </div>
+    </nav>
     <div class=" md:flex">
         <aside
             class="hidden flex w-full md:w-[15%]  bg-[#6140E1]  text-white shadow-lg shadow-black ow-black md:h-[93vh] sticky top-12 text-center md:text-left  md:flex flex-col">
@@ -42,116 +45,144 @@
                     <a href="expenses.html" class="md:mb-4 md:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Expense</a>
                     <a href="catagory.html"
                         class="md:mb-4 md:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Categories</a>
-                    <a href="settings.html" class="md:mb-4 md:py-4 font-bold text-lg pl-4 hover:shadow-lg shadow-xl md:border-r-4 ">Settings</a>
+                    <a href="settings.html"
+                        class="md:mb-4 md:py-4 font-bold text-lg pl-4 hover:shadow-lg shadow-xl md:border-r-4 ">Settings</a>
                     <a href="profile.html" class="md:mb-4 md:py-4 font-bold text-lg pl-4 hover:shadow-lg ">Profile</a>
                     <a href="signin.html"
                         class="bg-gradient-to-r from-purple-400 to-purple-600 hover:from-purple-600 hover:to-purple-800 text-white text-center font-bold mx-4 py-3 px-6 rounded-full shadow-lg transform transition-all duration-500 ease-in-out hover:scale-110 hover:brightness-110 hover:animate-pulse active:animate-bounce">Logout</a>
 
         </aside>
-        <main class=" flex-col md:flex-row flex justify-center  md:w-[85%] ml-2">
-            <div class="m-4 p-4 md:h-40  flex flex-col items-center shadow-xl border-2 rounded">
-                <h1 class="text-center text-lg font-bold">Add Expense categories</h1>
-                <div class=" flex flex-col md:flex-row items-center mb-4">
-                    <h1 class="md:text-lg mr-2">Enter catagory name : </h1>
-                    <input type="text" class="border-2 outline-none" placeholder="New catagory" id="new_expense_catagory">
-
+        <main class="  md:w-[85%] ml-2">
+            <div class=" m-4 p-2  shadow-xl border-2 rounded-xl ">
+                <h1 class="text-center font-bold mb-2">Transection types with there default categories</h1>
+                <div class="flex-col  md:flex-row  flex  justify-evenly">
+                    <div class="flex text-center justify-between">
+                        <h1 for="transactiontype" class="text-lg font-bold mr-2">Transaction type:</h1>
+                        <select name="transactiontype" id="transactiontype" class="rounded md:px-4 shadow-lg border-2 ">
+                            <option value="Expense">Expense</option>
+                            <option value="Income">Income</option>
+                        </select>
+                    </div>
+                    <div class="flex text-center justify-between">
+                        <h1 for="category" class="text-lg font-bold mr-2">Category :</h1>
+                        <select name="category" id="category" class="rounded md:px-4 shadow-lg border-2">
+                        </select>
+                    </div>
                 </div>
-
-                <div class="flex justify-center">
-                    <input type="submit" value="Save"
-                        class="bg-gradient-to-r from-purple-400 to-purple-600 hover:from-purple-600 hover:to-purple-800 text-white text-center font-bold mx-4 py-3 px-6 rounded-full shadow-lg transform transition-all duration-500 ease-in-out hover:scale-110 hover:brightness-110 hover:animate-pulse active:animate-bounce"
-                        id="add_expense_btn">
-                </div>
-
 
             </div>
-           
-            <div class="m-4 p-4 h-40 shadow-xl border-2 rounded">
-                <h1 class="text-center text-lg font-bold">Add Income categories</h1>
-                <div class=" flex flex-col md:flex-row items-center mb-4">
-                    <h1 class="md:text-lg mr-2">Enter catagory name : </h1>
-                    <input type="text" class="border-2 outline-none" placeholder="New catagory" id="new_income_catagory">
+
+            <div class=" flex-col md:flex-row flex justify-center">
+                <div class="m-4 p-4 md:h-auto  flex flex-col  items-center shadow-xl border-2 rounded">
+                    <h1 class="text-center text-lg font-bold">Add Expense categories</h1>
+                    <div class=" flex flex-col md:flex-row items-center mb-4">
+                        <h1 class="md:text-lg mr-2">Enter catagory name : </h1>
+                        <input type="text" class="border-2 outline-none" placeholder="New catagory"
+                            id="new_expense_catagory">
+
+                    </div>
+
+                    <div class="flex justify-center">
+                        <input type="submit" value="Save"
+                            class="bg-gradient-to-r from-purple-400 to-purple-600 hover:from-purple-600 hover:to-purple-800 text-white text-center font-bold mx-4 py-3 px-6 rounded-full shadow-lg transform transition-all duration-500 ease-in-out hover:scale-110 hover:brightness-110 hover:animate-pulse active:animate-bounce"
+                            id="add_expense_btn">
+                    </div>
+
 
                 </div>
 
-                <div class="flex justify-center">
-                    <input type="submit" value="Save"
-                        class="bg-gradient-to-r from-purple-400 to-purple-600 hover:from-purple-600 hover:to-purple-800 text-white text-center font-bold mx-4 py-3 px-6 rounded-full shadow-lg transform transition-all duration-500 ease-in-out hover:scale-110 hover:brightness-110 hover:animate-pulse active:animate-bounce"
-                        id="add_income_btn">
+                <div class="m-4 p-4 h-auto shadow-xl border-2 rounded">
+                    <h1 class="text-center text-lg font-bold">Add Income categories</h1>
+                    <div class=" flex flex-col md:flex-row items-center mb-4">
+                        <h1 class="md:text-lg mr-2">Enter catagory name : </h1>
+                        <input type="text" class="border-2 outline-none" placeholder="New catagory"
+                            id="new_income_catagory">
+
+                    </div>
+
+                    <div class="flex justify-center">
+                        <input type="submit" value="Save"
+                            class="bg-gradient-to-r from-purple-400 to-purple-600 hover:from-purple-600 hover:to-purple-800 text-white text-center font-bold mx-4 py-3 px-6 rounded-full shadow-lg transform transition-all duration-500 ease-in-out hover:scale-110 hover:brightness-110 hover:animate-pulse active:animate-bounce"
+                            id="add_income_btn">
+                    </div>
+
+
                 </div>
-
-
             </div>
-           
 
         </main>
+    </div>
+
+
 
 
     </div>
 
 
-<script>
-let users = []
-let userdata = localStorage.getItem('users')
-let activeuser = localStorage.getItem('activeUser')
-let active;
-let $active_user_data;
-if (userdata) {
-    users = JSON.parse(userdata)
-}
-users.forEach(element => {
-    if (element.email === activeuser) {
-        active = true
-        $active_user_data = element
-    }
-});
-if (!active) {
-    location.replace('./signin.html')
-}    
-let new_expense_catagory = document.getElementById('new_expense_catagory');
-let new_income_catagory = document.getElementById('new_income_catagory');
-let add_expense_btn = document.getElementById('add_expense_btn');
-let add_income_btn = document.getElementById('add_income_btn');
+    <script>
+        let users = []
+        let userdata = localStorage.getItem('users')
+        let activeuser = localStorage.getItem('activeUser')
+        let active;
+        let $active_user_data;
+        if (userdata) {
+            users = JSON.parse(userdata)
+        }
+        users.forEach(element => {
+            if (element.email === activeuser) {
+                active = true
+                $active_user_data = element
+            }
+        });
+        if (!active) {
+            location.replace('./signin.html')
+        }
+        let new_expense_catagory = document.getElementById('new_expense_catagory');
+        let new_income_catagory = document.getElementById('new_income_catagory');
+        let add_expense_btn = document.getElementById('add_expense_btn');
+        let add_income_btn = document.getElementById('add_income_btn');
 
-// let expense = [];
-// let income = [];
-let expense_data = localStorage.getItem('expense');
-let income_data = localStorage.getItem('income');
+        // let expense = [];
+        // let income = [];
+        let expense_data = localStorage.getItem('expense');
+        let income_data = localStorage.getItem('income');
 
-if (expense_data) {
-    expense = JSON.parse(expense_data);
-}
-if (income_data) {
-    income = JSON.parse(income_data);
-}
+        if (expense_data) {
+            expense = JSON.parse(expense_data);
+        }
+        if (income_data) {
+            income = JSON.parse(income_data);
+        }
 
-add_expense_btn.addEventListener('click', () => {
-    let enteredValue = new_expense_catagory.value;
-    // Check if the entered value already exists in the array
-    if (!expense.includes(enteredValue)) {
-        expense.push(enteredValue);
-        localStorage.setItem('expense', JSON.stringify(expense));
-        new_expense_catagory.value = '';
-    } else {
-        alert('Duplicate Category!');
-    }
-});
+        add_expense_btn.addEventListener('click', () => {
+            let enteredValue = new_expense_catagory.value;
+            // Check if the entered value already exists in the array
+            if (!expense.includes(enteredValue)) {
+                expense.push(enteredValue);
+                localStorage.setItem('expense', JSON.stringify(expense));
+                new_expense_catagory.value = '';
+                location.reload();
+            } else {
+                alert('Duplicate Category!');
+            }
+        });
 
-add_income_btn.addEventListener('click', () => {
-    let enteredValue = new_income_catagory.value;
-    // Check if the entered value already exists in the array
-    if (!income.includes(enteredValue)) {
-        income.push(enteredValue);
-        localStorage.setItem('income', JSON.stringify(income)); 
-        new_income_catagory.value = '';
-    } else {
-        alert('Duplicate Category!');
-    }
-});
-//username show in navbar
-let username = document.getElementById('username')
-let fullname = $active_user_data.fullname
-username.innerHTML = fullname.toUpperCase()
+        add_income_btn.addEventListener('click', () => {
+            let enteredValue = new_income_catagory.value;
+            // Check if the entered value already exists in the array
+            if (!income.includes(enteredValue)) {
+                income.push(enteredValue);
+                localStorage.setItem('income', JSON.stringify(income));
+                new_income_catagory.value = '';
+                location.reload();
+            } else {
+                alert('Duplicate Category!');
+            }
+        });
+        //username show in navbar
+        let username = document.getElementById('username')
+        let fullname = $active_user_data.fullname
+        username.innerHTML = fullname.toUpperCase()
 
 
         // Add this script at the end of your body tag
@@ -177,9 +208,52 @@ username.innerHTML = fullname.toUpperCase()
         }
 
 
-</script>
+    </script>
+    <script>
+        let $transactiontype = document.getElementById("transactiontype")
+        let $category = document.getElementById("category")
+        let expense = JSON.parse(localStorage.getItem('expense'))
+        let income = JSON.parse(localStorage.getItem('income'))
+
+        function typecheck() {
+            if ($transactiontype.value === "Expense") {
+                $category.options.length = 0;  // Clear existing options
+                addOptionsToCategory(expense);
+            } else if ($transactiontype.value === "Income") {
+                $category.options.length = 0;  // Clear existing options
+                addOptionsToCategory(income);
+            }
+        }
+
+        function addOptionsToCategory(optionsArray) {
+            for (let option of optionsArray) {
+                let optionElement = document.createElement("option");
+                optionElement.value = option;
+                optionElement.text = option;
+                $category.add(optionElement);
+            }
+        }
+
+        // Initial call to populate category based on default transaction type
+        typecheck();
+
+        // Event listener for changes in transaction type
+        $transactiontype.addEventListener("change", typecheck);
+    </script>
 
 
+
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script>
+        //code for animated typing
+        var typed = new Typed('.auto-type', {
+            strings: ['Expenses', "Income"],
+            typeSpeed: 150,
+            backSpeed: 150,
+            loop: true
+        })
+
+    </script>
 </body>
 
 </html>
