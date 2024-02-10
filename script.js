@@ -249,7 +249,6 @@ window.addEventListener('load', () => {
     } else if (pageLocation.includes('/expenses')) {
         transactionType = 'Expense';
     }
-
     // Call initializeTable with the determined transactionType or without an argument
     initializeTable(transactionType);
 });

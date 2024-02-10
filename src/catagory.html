@@ -19,33 +19,37 @@
             sans-serif;
 
     }
-    #t_body tr td{
-        white-space: nowrap ;
+
+    #t_body tr td {
+        white-space: nowrap;
         border: 2px solid #DEDEDE;
         padding: 5px 10px;
         text-align: center;
     }
-    .t_head th{
-        white-space: nowrap ;
-        border: 2px solid #DEDEDE; 
+
+    .t_head th {
+        white-space: nowrap;
+        border: 2px solid #DEDEDE;
         padding: 5px 10px;
 
     }
 </style>
+
 <body>
     <nav
-    class="h-12  flex justify-between z-50 items-center sticky text-white top-0 bg-[#6140E1] shadow-sm shadow-white">
-    <div class="flex items-center ml-2">
-        <img src="../assts/menu.png" class="md:hidden w-6 h-6" id="menu-btn">
-        <h1 class=" md:text-lg font-bold md:block">
-            💰FinTrackr</h1>
-    </div>
-    <h1 class="hidden  md:flex text-center md:text-xl "><span class="hidden md:block">Track your <span class="auto-type text-[#f4d366]"></span></h1>
-    <div class="flex items-center">
-        <span id="username" class=" md:text-lg mr-2"></span>
-        <img src="../assts/user.png" alt="" class="w-8 h-8 mr-2 rounded-full">
-    </div>
-</nav>
+        class="h-12  flex justify-between z-50 items-center sticky text-white top-0 bg-[#6140E1] shadow-sm shadow-white">
+        <div class="flex items-center ml-2">
+            <img src="../assts/menu.png" class="md:hidden w-6 h-6" id="menu-btn">
+            <h1 class=" md:text-lg font-bold md:block">
+                💰FinTrackr</h1>
+        </div>
+        <h1 class="hidden  md:flex text-center md:text-xl "><span class="hidden md:block">Track your <span
+                    class="auto-type text-[#f4d366]"></span></h1>
+        <div class="flex items-center">
+            <span id="username" class=" md:text-lg mr-2"></span>
+            <img src="../assts/user.png" alt="" class="w-8 h-8 mr-2 rounded-full">
+        </div>
+    </nav>
     <div class=" md:flex">
         <aside
             class="hidden flex w-full md:w-[15%]  bg-[#6140E1]  text-white shadow-lg shadow-black ow-black md:h-[93vh] sticky top-12 text-center md:text-left  md:flex flex-col">
@@ -63,13 +67,18 @@
         </aside>
 
         <main class=" md:w-[85%]">
-            <div  class="m-4 p-4 w-auto h-auto shadow-xl border-2 rounded-xl ">  
+            <div class="m-4 p-4 w-auto h-auto shadow-xl border-2 rounded-xl ">
                 <div class=" flex items-center justify-around mb-4">
                     <div class="flex">
                         <h1 for="transactiontype" class="md:text-lg font-bold mr-2">Select Transaction type:</h1>
                         <select name="transactiontype" id="transactiontype" class="rounded  shadow-lg border-2 ">
                             <option value="Expense">Expense</option>
                             <option value="Income">Income</option>
+                        </select>
+                    </div>
+                    <div class="flex text-center justify-between">
+                        <h1 for="category" class="text-lg font-bold mr-2">Category :</h1>
+                        <select name="category" id="category" class="rounded md:px-4 shadow-lg border-2">
                         </select>
                     </div>
                 </div>
@@ -86,7 +95,7 @@
                         <th>Note</th>
                     </tr>
                     <tbody id="t_body">
-                       
+
                     </tbody>
                 </table>
 
@@ -99,108 +108,152 @@
 
 
 
-  
-<script>
-    let users = []
-    let userdata = localStorage.getItem('users')
-    let activeuser = localStorage.getItem('activeUser')
-    let active;
-    let $active_user_data;
-    let tabledata;
-    if (userdata) {
-        users = JSON.parse(userdata)
-    }
-    
-    users.forEach(element => {
-        if (element.email === activeuser) {
-            active = true
-            $active_user_data = element
+
+    <script>
+        // user auth check starts
+        let users = []
+        let userdata = localStorage.getItem('users')
+        let activeuser = localStorage.getItem('activeUser')
+        let active;
+        let $active_user_data;
+        let tabledata;
+        if (userdata) {
+            users = JSON.parse(userdata)
         }
-    });
-    
-    if (!active) {
-        location.replace('./signin.html')
-    }
-//username show in navbar
-    let username = document.getElementById('username')
-    let fullname = $active_user_data.fullname
-    username.innerHTML = fullname.toUpperCase()
 
-    tabledata = $active_user_data.tableData || [];
-
-
-    function updateTable(transactionType) {
-        let tbody = document.getElementById('t_body');
-        tbody.innerHTML = ''; // Clear existing table rows
-
-        tabledata.forEach(rowData => {
-            if (!transactionType || rowData.transactionType === transactionType) {
-                let t_row = createTableRow(rowData);
-                tbody.appendChild(t_row);
+        users.forEach(element => {
+            if (element.email === activeuser) {
+                active = true
+                $active_user_data = element
             }
         });
-    }
 
-    function createTableRow(rowData) {
-        let t_row = document.createElement('tr');
+        if (!active) {
+            location.replace('./signin.html')
+        }
+        // user auth check ends
 
-        // Populate the table row with data
-        for (let key in rowData) {
-            let cell = document.createElement('td');
-            cell.innerHTML = rowData[key];
-            t_row.appendChild(cell);
+
+        //username show in navbar starts
+        let username = document.getElementById('username')
+        let fullname = $active_user_data.fullname
+        username.innerHTML = fullname.toUpperCase()
+
+        tabledata = $active_user_data.tableData || [];
+        //username show in navbar ends
+
+        // tabledata selection from selected catagory starts
+        let $transactiontype = document.getElementById("transactiontype")
+        let $category = document.getElementById("category")
+        let expense = JSON.parse(localStorage.getItem('expense'))
+        let income = JSON.parse(localStorage.getItem('income'))
+
+        function typecheck() {
+            if ($transactiontype.value === "Expense") {
+                $category.options.length = 0;  // Clear existing options
+                addOptionsToCategory(expense);
+                updateTable($category.value)
+            } else if ($transactiontype.value === "Income") {
+                $category.options.length = 0;  // Clear existing options
+                addOptionsToCategory(income);
+                updateTable($category.value)
+            }
         }
 
-      
-
-        return t_row;
-    }
-
-    // Call the updateTable function on page load based on the selected transaction type
-    window.addEventListener('load', () => {
-        let transactionType = document.getElementById('transactiontype').value;
-        updateTable(transactionType);
-    });
-
-    // Event listener for changes in transaction type
-    document.getElementById('transactiontype').addEventListener('change', function () {
-        let transactionType = this.value;
-        updateTable(transactionType);
-    });
-    // Add this script at the end of your body tag
-
-    // Get references to the menu button and aside element
-    const menuBtn = document.getElementById('menu-btn');
-    const aside = document.querySelector('aside');
-
-    // Add event listener to the menu button
-    menuBtn.addEventListener('click', toggleMenu);
-    function toggleMenu() {
-        // Toggle the visibility of the aside element
-        aside.classList.toggle('hidden');
-        // Change the image source based on the menu state
-        // const menuIcon = document.getElementById('menu-icon');
-        if (aside.classList.contains('hidden')) {
-            // If the aside is hidden, use the closed menu icon
-            menuBtn.src = '../assts/menu.png';
-        } else {
-            // If the aside is visible, use the open menu icon
-            menuBtn.src = '../assts/cross.png';
+        function addOptionsToCategory(optionsArray) {
+            for (let option of optionsArray) {
+                let optionElement = document.createElement("option");
+                optionElement.value = option;
+                optionElement.text = option;
+                $category.add(optionElement);
+            }
         }
-    }
-</script>
 
-<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-<script>
-    //code for animated typing
-    var typed = new Typed('.auto-type',{
-        strings:['Expenses',"Income"],
-        typeSpeed : 150,
-        backSpeed : 150,
-        loop : true
-    })
+        // Initial call to populate category based on default transaction type
+        typecheck();
 
-</script>
+        // Event listener for changes in transaction type
+        $transactiontype.addEventListener("change", typecheck);
+
+
+
+
+
+        // transection type starts
+        function updateTable(category) {
+            let tbody = document.getElementById('t_body');
+            tbody.innerHTML = ''; // Clear existing table rows
+
+            tabledata.forEach(rowData => {
+                if (!category || rowData.category === category) {
+                    let t_row = createTableRow(rowData);
+                    tbody.appendChild(t_row);
+                }
+            });
+        }
+
+        function createTableRow(rowData) {
+            let t_row = document.createElement('tr');
+
+            // Populate the table row with data
+            for (let key in rowData) {
+                let cell = document.createElement('td');
+                cell.innerHTML = rowData[key];
+                t_row.appendChild(cell);
+            }
+            return t_row;
+        }
+
+        // Call the updateTable function on page load based on the selected transaction type
+        window.addEventListener('load', () => {
+            let selectedcatagory = $category.value
+            updateTable(selectedcatagory)
+
+        });
+
+        // Event listener for changes in transaction type
+        $category.addEventListener('change', function () {
+            let catagory = this.value;
+            updateTable(catagory);
+        });
+        // tabledata selection from selected catagory ends
+
+
+
+        // menu for small devices starts
+
+        const menuBtn = document.getElementById('menu-btn');
+        const aside = document.querySelector('aside');
+
+        // Add event listener to the menu button
+        menuBtn.addEventListener('click', toggleMenu);
+        function toggleMenu() {
+            // Toggle the visibility of the aside element
+            aside.classList.toggle('hidden');
+            // Change the image source based on the menu state
+            // const menuIcon = document.getElementById('menu-icon');
+            if (aside.classList.contains('hidden')) {
+                // If the aside is hidden, use the closed menu icon
+                menuBtn.src = '../assts/menu.png';
+            } else {
+                // If the aside is visible, use the open menu icon
+                menuBtn.src = '../assts/cross.png';
+            }
+        }
+        // menu for small devices ends
+    </script>
+
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script>
+        //code for animated typing
+        var typed = new Typed('.auto-type', {
+            strings: ['Expenses', "Income"],
+            typeSpeed: 150,
+            backSpeed: 150,
+            loop: true
+        })
+
+    </script>
 
 </body>
 
