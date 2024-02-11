@@ -32,11 +32,10 @@ let $note = document.getElementById("note")
 let $t_body = document.getElementById("t_body")
 let $save_records = document.getElementById("save_records");
 
+let expense = $active_user_data.expense_catagory
+let income = $active_user_data.income_catagory
 
 
-
-let expense = JSON.parse(localStorage.getItem('expense'))
-let income = JSON.parse(localStorage.getItem('income'))
 
 function typecheck() {
     if ($transactiontype.value === "Expense") {

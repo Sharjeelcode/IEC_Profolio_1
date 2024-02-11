@@ -39,7 +39,8 @@
             <h1 class=" md:text-lg font-bold md:block">
                 💰FinTrackr</h1>
         </div>
-        <h1 class="text-[11px] flex text-center md:text-xl "><span class="hidden md:block">Register to &nbsp;</span> Track your &nbsp;<span class="auto-type text-[#f4d366]"></span> </h1>
+        <h1 class="text-[11px] flex text-center md:text-xl "><span class="hidden md:block">Register to &nbsp;</span>
+            Track your &nbsp;<span class="auto-type text-[#f4d366]"></span> </h1>
         <a href="src/signin.html"
             class="bg-gradient-to-r from-purple-400 to-purple-600 hover:from-purple-600 hover:to-purple-800 text-white font-bold py-2 px-3 rounded-full shadow-lg transform transition-all duration-500 ease-in-out hover:scale-110 hover:brightness-110 hover:animate-pulse active:animate-bounce  mr-2">SignIn</a>
     </nav>
@@ -99,7 +100,8 @@
             const email = signup_email.value;
             const password = signup_password.value;
             const confirmpassword = signup_confirmpassword.value;
-            console.log(password.length);
+            income_catagory = ["Commission", "Salary", "Bonus"]
+            expense_catagory = ["Utilities", "Grocery", "Rent", "Health", "Education"]
 
             if (fullname === "" || email === "" || password === "" || confirmpassword === "") {
                 alert("Please fill all fields");
@@ -114,6 +116,8 @@
                     fullname,
                     email,
                     password,
+                    income_catagory,
+                    expense_catagory,
                 }
                 users.push(newuser);
                 localStorage.setItem('users', JSON.stringify(users))

@@ -145,8 +145,8 @@
         // tabledata selection from selected catagory starts
         let $transactiontype = document.getElementById("transactiontype")
         let $category = document.getElementById("category")
-        let expense = JSON.parse(localStorage.getItem('expense'))
-        let income = JSON.parse(localStorage.getItem('income'))
+        let expense = $active_user_data.expense_catagory
+        let income = $active_user_data.income_catagory
 
         function typecheck() {
             if ($transactiontype.value === "Expense") {

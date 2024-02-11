@@ -103,11 +103,6 @@
             } else {
                 alert("Email not exists in Database");
             }
-            let income_catagory = ["Commission", "Salary", "Bonus"]
-            let expense_catagory = ["Utilities", "Grocery", "Rent", "Health", "Education"]
-
-            localStorage.setItem('income', JSON.stringify(income_catagory))
-            localStorage.setItem('expense', JSON.stringify(expense_catagory))
         }
 
         signin_btn.addEventListener('click', login)

@@ -19,6 +19,25 @@
             sans-serif;
 
     }
+
+    #income_data h1,
+    #expense_data h1 {
+        padding: 5px;
+    }
+    #income_data h2,
+    #expense_data h2 {
+        padding: 10px;
+    }
+
+    .t_head th {
+        white-space: nowrap;
+        border: 2px solid #DEDEDE;
+        padding: 5px;
+    }
+
+    main {
+        background: linear-gradient(#ffffff, white);
+    }
 </style>
 
 <body>
@@ -53,25 +72,6 @@
 
         </aside>
         <main class="  md:w-[85%] ml-2">
-            <div class=" m-4 p-2  shadow-xl border-2 rounded-xl ">
-                <h1 class="text-center font-bold mb-2">Transection types with there default categories</h1>
-                <div class="flex-col  md:flex-row  flex  justify-evenly">
-                    <div class="flex text-center justify-between">
-                        <h1 for="transactiontype" class="text-lg font-bold mr-2">Transaction type:</h1>
-                        <select name="transactiontype" id="transactiontype" class="rounded md:px-4 shadow-lg border-2 ">
-                            <option value="Expense">Expense</option>
-                            <option value="Income">Income</option>
-                        </select>
-                    </div>
-                    <div class="flex text-center justify-between">
-                        <h1 for="category" class="text-lg font-bold mr-2">Category :</h1>
-                        <select name="category" id="category" class="rounded md:px-4 shadow-lg border-2">
-                        </select>
-                    </div>
-                </div>
-
-            </div>
-
             <div class=" flex-col md:flex-row flex justify-center">
                 <div class="m-4 p-4 md:h-auto  flex flex-col  items-center shadow-xl border-2 rounded">
                     <h1 class="text-center text-lg font-bold">Add Expense categories</h1>
@@ -109,6 +109,14 @@
 
                 </div>
             </div>
+            <div class="flex w-full justify-center">
+                <div class="h-auto mr-2 rounded shadow-xl text-center border-2" id="expense_data">
+                    <h2 class="font-bold border-b-2">Default Expense catagories</h2>
+                </div>
+                <div class="h-auto mr-2 rounded shadow-xl text-center border-2" id="income_data">
+                    <h2 class="font-bold  border-b-2">Default Income catagories</h2>
+                </div>
+            </div>
 
         </main>
     </div>
@@ -141,104 +149,88 @@
         let new_income_catagory = document.getElementById('new_income_catagory');
         let add_expense_btn = document.getElementById('add_expense_btn');
         let add_income_btn = document.getElementById('add_income_btn');
+        let expense_data = document.getElementById("expense_data")
+        let income_data = document.getElementById("income_data")
 
-        // let expense = [];
-        // let income = [];
-        let expense_data = localStorage.getItem('expense');
-        let income_data = localStorage.getItem('income');
+        let income = $active_user_data.income_catagory;
+        let expense = $active_user_data.expense_catagory;
 
-        if (expense_data) {
-            expense = JSON.parse(expense_data);
-        }
-        if (income_data) {
-            income = JSON.parse(income_data);
-        }
 
-        add_expense_btn.addEventListener('click', () => {
+
+
+        // add new expense catagory
+        function addexpesne() {
             let enteredValue = new_expense_catagory.value;
             // Check if the entered value already exists in the array
             if (!expense.includes(enteredValue)) {
                 expense.push(enteredValue);
-                localStorage.setItem('expense', JSON.stringify(expense));
+                localStorage.setItem('users', JSON.stringify(users));
                 new_expense_catagory.value = '';
                 location.reload();
             } else {
                 alert('Duplicate Category!');
             }
-        });
+        }
 
-        add_income_btn.addEventListener('click', () => {
+        // add new income catagory
+        function addincome() {
             let enteredValue = new_income_catagory.value;
             // Check if the entered value already exists in the array
             if (!income.includes(enteredValue)) {
                 income.push(enteredValue);
-                localStorage.setItem('income', JSON.stringify(income));
+                localStorage.setItem('users', JSON.stringify(users));
                 new_income_catagory.value = '';
                 location.reload();
             } else {
                 alert('Duplicate Category!');
             }
-        });
+        }
+
+        add_expense_btn.addEventListener('click', addexpesne)
+        add_income_btn.addEventListener('click', addincome)
+
+        function default_income() {
+            for (let i = 0; i < income.length; i++) {
+                let catagory = document.createElement('h1')
+                catagory.innerHTML = income[i]
+                income_data.appendChild(catagory)
+            }
+        }
+        default_income()
+
+        function default_expesne() {
+            for (let i = 0; i < expense.length; i++) {
+                let catagory = document.createElement('h1')
+                catagory.innerHTML = expense[i]
+                expense_data.appendChild(catagory)
+            }
+        }
+        default_expesne()
+        // defaultdata(expense)
+
+
+
+
         //username show in navbar
         let username = document.getElementById('username')
         let fullname = $active_user_data.fullname
         username.innerHTML = fullname.toUpperCase()
 
-
-        // Add this script at the end of your body tag
-
-        // Get references to the menu button and aside element
         const menuBtn = document.getElementById('menu-btn');
         const aside = document.querySelector('aside');
 
         // Add event listener to the menu button
         menuBtn.addEventListener('click', toggleMenu);
         function toggleMenu() {
-            // Toggle the visibility of the aside element
             aside.classList.toggle('hidden');
-            // Change the image source based on the menu state
-            // const menuIcon = document.getElementById('menu-icon');
             if (aside.classList.contains('hidden')) {
-                // If the aside is hidden, use the closed menu icon
                 menuBtn.src = '../assts/menu.png';
             } else {
-                // If the aside is visible, use the open menu icon
                 menuBtn.src = '../assts/cross.png';
             }
         }
 
 
-    </script>
-    <script>
-        let $transactiontype = document.getElementById("transactiontype")
-        let $category = document.getElementById("category")
-        let expense = JSON.parse(localStorage.getItem('expense'))
-        let income = JSON.parse(localStorage.getItem('income'))
-
-        function typecheck() {
-            if ($transactiontype.value === "Expense") {
-                $category.options.length = 0;  // Clear existing options
-                addOptionsToCategory(expense);
-            } else if ($transactiontype.value === "Income") {
-                $category.options.length = 0;  // Clear existing options
-                addOptionsToCategory(income);
-            }
-        }
-
-        function addOptionsToCategory(optionsArray) {
-            for (let option of optionsArray) {
-                let optionElement = document.createElement("option");
-                optionElement.value = option;
-                optionElement.text = option;
-                $category.add(optionElement);
-            }
-        }
-
-        // Initial call to populate category based on default transaction type
-        typecheck();
-
-        // Event listener for changes in transaction type
-        $transactiontype.addEventListener("change", typecheck);
     </script>
 
 
