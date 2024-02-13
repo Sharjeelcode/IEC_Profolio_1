@@ -30,6 +30,10 @@
         color: white;
 
     }
+    #password_btn{
+        width: 30px;
+        height: 20px;
+    }
 </style>
 <body>
     <nav
@@ -51,8 +55,11 @@
                     <input class="md:text-lg outline-none w-full  shadow-xl  rounded mb-2" type="email"
                         autocomplete="off" name="Email" placeholder="name@gmail.com" id="sign_email" required title="Please enter a valid email address">
                     <h1 class="text-lg md:text-xl font-bold  text-white">Password</h1>
-                    <input class="md:text-lg outline-none w-full  shadow-xl rounded  mb-2" type="password"
-                        placeholder="Abcd1234" id="signin_password">
+                    <div class="flex w-full items-center  shadow-xl">
+                        <input class="md:text-lg outline-none w-full rounded  mb-2" type="password"
+                            placeholder="Abcd1234" id="signin_password">
+                        <img id="password_btn" src="../assts/eye-close.png">
+                    </div>
                     <div class="flex justify-center">
                         <button
                             class="bg-gradient-to-r from-purple-400 to-purple-600 hover:from-purple-600 hover:to-purple-800 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition-all duration-500 ease-in-out hover:scale-110 hover:brightness-110 hover:animate-pulse active:animate-bounce"
@@ -104,8 +111,21 @@
                 alert("Email not exists in Database");
             }
         }
-
         signin_btn.addEventListener('click', login)
+
+        //hide and view password
+        let password_btn = document.getElementById("password_btn")
+        password_btn.addEventListener('click', ()=>{
+            if (signin_password.type == "password") {
+                signin_password.type = "text"
+                password_btn.src = '../assts/eye-open.png'
+            } else {
+                signin_password.type = "password"
+                password_btn.src = "../assts/eye-close.png"
+            }
+        })
+
+
     </script>
 <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
 <script>
