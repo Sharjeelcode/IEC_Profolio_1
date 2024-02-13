@@ -30,6 +30,11 @@
         color: white;
 
     }
+
+    #password_btn,#confirm_password_btn {
+        width: 30px;
+        height: 20px;
+    }
 </style>
 
 <body>
@@ -50,19 +55,24 @@
             <div class="signup_form  flex flex-col justify-between  m-4 w-full  md:h-auto  shadow-2xl">
                 <div class="m-4  h-full justify-between flex flex-col md:justify-between ">
                     <h1 class="text-lg md:text-xl font-bold  text-white">Full name</h1>
-                    <input class="md:text-lg outline-none w-full  shadow-xl r rounded mb-2" type="text"
-                        name="name" autocomplete="off" placeholder="Your good name" id="signup_fullname">
+                    <input class="md:text-lg outline-none w-full  shadow-xl r rounded mb-2" type="text" name="name"
+                        autocomplete="off" placeholder="Your good name" id="signup_fullname">
                     <h1 class="text-lg md:text-xl font-bold  text-white">Email</h1>
                     <input class="md:text-lg outline-none w-full  shadow-xl  rounded mb-2" type="email"
                         autocomplete="off" name="Email" placeholder="name@gmail.com" id="signup_email" required
                         pattern="[^\s@]+@[^\s@]+\.[^\s@]+" title="Please enter a valid email address">
                     <h1 class="text-lg md:text-xl font-bold  text-white">Password</h1>
-                    <input class="md:text-lg outline-none w-full  shadow-xl  rounded  mb-2" type="password"
-                        placeholder="Abcd1234" id="signup_password">
+                    <div class="flex w-full items-center  shadow-xl">
+                        <input class="md:text-lg outline-none w-full rounded  mb-2" type="password"
+                            placeholder="Abcd1234" id="signup_password">
+                        <img id="password_btn" src="assts/eye-close.png">
+                    </div>
                     <h1 class="text-lg md:text-xl font-bold  text-white">Confirm Password</h1>
-                    <input class="md:text-lg outline-none w-full  shadow-xl  rounded  mb-2" type="password"
-                        placeholder="Abcd1234" id="signup_confirmpassword">
-
+                    <div class="flex w-full items-center  shadow-xl">
+                        <input class="md:text-lg outline-none w-full rounded  mb-2" type="password"
+                            placeholder="Abcd1234" id="signup_confirmpassword">
+                        <img id="confirm_password_btn" src="assts/eye-close.png">
+                    </div>
                     <div class="flex justify-center">
                         <button
                             class="bg-gradient-to-r from-purple-400 to-purple-600 hover:from-purple-600 hover:to-purple-800 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition-all duration-500 ease-in-out hover:scale-110 hover:brightness-110 hover:animate-pulse active:animate-bounce"
@@ -83,7 +93,7 @@
         let signup_confirmpassword = document.getElementById("signup_confirmpassword")
         let register_btn = document.getElementById("signup_btn")
         let users = []
-
+        
         let localstorage = localStorage.getItem('users')
 
         if (localstorage) {
@@ -126,6 +136,30 @@
         }
 
         register_btn.addEventListener('click', submituser)
+
+        //hide and view password
+        let password_btn = document.getElementById("password_btn")
+        let confirm_password_btn = document.getElementById("confirm_password_btn")
+        confirm_password_btn.addEventListener('click', ()=>{
+            if (signup_confirmpassword.type == "password") {
+                signup_confirmpassword.type = "text"
+                confirm_password_btn.src = 'assts/eye-open.png'
+            } else {
+                signup_confirmpassword.type = "password"
+                confirm_password_btn.src = 'assts/eye-close.png'
+            }
+        })
+        password_btn.addEventListener('click', ()=>{
+            if (signup_password.type == "password") {
+                signup_password.type = "text"
+                password_btn.src = 'assts/eye-open.png'
+            } else {
+                signup_password.type = "password"
+                password_btn.src = 'assts/eye-close.png'
+            }
+        })
+
+
     </script>
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <script>
